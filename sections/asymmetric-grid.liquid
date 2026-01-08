@@ -1,0 +1,98 @@
+{%- liquid
+  assign image_1 = section.settings.image_1
+  assign image_2 = section.settings.image_2
+  assign link_1 = section.settings.link_1
+  assign link_2 = section.settings.link_2
+-%}
+
+<section class="asymmetric-grid" data-section>
+  <div class="asymmetric-grid__inner">
+    <div class="asymmetric-grid__item asymmetric-grid__item--small">
+      {%- if link_1 != blank -%}
+        <a href="{{ link_1 }}" class="asymmetric-grid__link">
+      {%- endif -%}
+        <div class="asymmetric-grid__image-wrapper">
+          {%- if image_1 != blank -%}
+            <img 
+              src="{{ image_1 | image_url: width: 800 }}" 
+              alt="{{ image_1.alt | escape }}"
+              class="asymmetric-grid__image"
+              loading="lazy"
+              width="800"
+              height="1200"
+            >
+          {%- else -%}
+            {{ 'image' | placeholder_svg_tag: 'asymmetric-grid__placeholder' }}
+          {%- endif -%}
+        </div>
+      {%- if link_1 != blank -%}
+        </a>
+      {%- endif -%}
+    </div>
+
+    <div class="asymmetric-grid__item asymmetric-grid__item--large">
+      {%- if link_2 != blank -%}
+        <a href="{{ link_2 }}" class="asymmetric-grid__link">
+      {%- endif -%}
+        <div class="asymmetric-grid__image-wrapper">
+          {%- if image_2 != blank -%}
+            <img 
+              src="{{ image_2 | image_url: width: 1600 }}" 
+              alt="{{ image_2.alt | escape }}"
+              class="asymmetric-grid__image"
+              loading="lazy"
+              width="1600"
+              height="1200"
+            >
+          {%- else -%}
+            {{ 'image' | placeholder_svg_tag: 'asymmetric-grid__placeholder' }}
+          {%- endif -%}
+        </div>
+      {%- if link_2 != blank -%}
+        </a>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Asymmetric Grid",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Small Image (1/3)"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_1",
+      "label": "Image"
+    },
+    {
+      "type": "url",
+      "id": "link_1",
+      "label": "Link"
+    },
+    {
+      "type": "header",
+      "content": "Large Image (2/3)"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_2",
+      "label": "Image"
+    },
+    {
+      "type": "url",
+      "id": "link_2",
+      "label": "Link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Asymmetric Grid"
+    }
+  ]
+}
+{% endschema %}
+

@@ -1,0 +1,60 @@
+{%- liquid
+  assign collection = collections[section.settings.collection]
+  assign title = section.settings.title
+-%}
+
+<section class="product-carousel" data-section>
+  {%- if title != blank -%}
+    <div class="product-carousel__header">
+      <h2 class="product-carousel__title">{{ title }}</h2>
+    </div>
+  {%- endif -%}
+
+  <div class="product-carousel__container">
+    <div class="product-carousel__track" data-carousel-track>
+      {%- if collection != blank and collection.products.size > 0 -%}
+        {%- for product in collection.products limit: 12 -%}
+          {% render 'product-card', product: product, show_category: true %}
+        {%- endfor -%}
+      {%- else -%}
+        {%- for i in (1..8) -%}
+          <div class="product-card">
+            <div class="product-card__image-wrapper">
+              {{ 'product-1' | placeholder_svg_tag: 'product-card__placeholder' }}
+            </div>
+            <div class="product-card__info">
+              <p class="product-card__category">Category</p>
+              <h3 class="product-card__name">Product Name</h3>
+              <p class="product-card__price">$0.00</p>
+            </div>
+          </div>
+        {%- endfor -%}
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Product Carousel",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Featured Products"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Carousel"
+    }
+  ]
+}
+{% endschema %}
+

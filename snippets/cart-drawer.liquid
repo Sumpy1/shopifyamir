@@ -1,0 +1,25 @@
+<div class="cart-drawer" data-cart-drawer>
+  <div class="cart-drawer__overlay" data-cart-overlay></div>
+  <div class="cart-drawer__inner">
+    <div class="cart-drawer__header">
+      <h2 class="cart-drawer__title">Shopping Bag</h2>
+      <button type="button" class="cart-drawer__close" aria-label="Close cart" data-cart-close>
+        {% render 'icon-close' %}
+      </button>
+    </div>
+    <div class="cart-drawer__content" data-cart-content>
+      <div class="cart-drawer__empty" data-cart-empty>
+        <p>Your cart is empty</p>
+      </div>
+      <div class="cart-drawer__items" data-cart-items></div>
+    </div>
+    <div class="cart-drawer__footer" data-cart-footer>
+      <div class="cart-drawer__subtotal">
+        <span>Subtotal</span>
+        <span data-cart-subtotal>{{ cart.total_price | money }}</span>
+      </div>
+      <a href="{{ routes.cart_url }}" class="cart-drawer__checkout">Checkout</a>
+    </div>
+  </div>
+</div>
+

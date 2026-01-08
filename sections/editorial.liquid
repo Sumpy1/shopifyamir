@@ -1,0 +1,83 @@
+{%- liquid
+  assign image = section.settings.image
+  assign heading = section.settings.heading
+  assign text = section.settings.text
+  assign link_text = section.settings.link_text
+  assign link_url = section.settings.link_url
+-%}
+
+<section class="editorial" data-section>
+  <div class="editorial__inner">
+    <div class="editorial__content">
+      {%- if heading != blank -%}
+        <h2 class="editorial__heading">{{ heading }}</h2>
+      {%- endif -%}
+      {%- if text != blank -%}
+        <div class="editorial__text">
+          {{ text }}
+        </div>
+      {%- endif -%}
+      {%- if link_text != blank and link_url != blank -%}
+        <a href="{{ link_url }}" class="editorial__link">
+          {{ link_text }}
+          <span class="editorial__link-arrow">→</span>
+        </a>
+      {%- endif -%}
+    </div>
+    <div class="editorial__image">
+      {%- if image != blank -%}
+        <img 
+          src="{{ image | image_url: width: 800 }}" 
+          alt="{{ image.alt | escape }}"
+          class="editorial__image-img"
+          loading="lazy"
+          width="800"
+          height="800"
+        >
+      {%- else -%}
+        {{ 'image' | placeholder_svg_tag: 'editorial__placeholder' }}
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Editorial Section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Our Story"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text"
+    },
+    {
+      "type": "text",
+      "id": "link_text",
+      "label": "Link text",
+      "default": "Learn More"
+    },
+    {
+      "type": "url",
+      "id": "link_url",
+      "label": "Link URL"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Editorial Section"
+    }
+  ]
+}
+{% endschema %}
+

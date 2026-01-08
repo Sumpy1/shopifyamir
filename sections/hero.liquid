@@ -1,0 +1,77 @@
+{%- liquid
+  assign image = section.settings.image
+  assign title = section.settings.title
+  assign description = section.settings.description
+  assign button_text = section.settings.button_text
+  assign button_link = section.settings.button_link
+-%}
+
+<section class="hero" data-section>
+  <div class="hero__image-wrapper">
+    {%- if image != blank -%}
+      <img 
+        src="{{ image | image_url: width: 1920 }}" 
+        alt="{{ image.alt | escape }}"
+        class="hero__image"
+        loading="eager"
+        width="1920"
+        height="1080"
+      >
+    {%- else -%}
+      {{ 'lifestyle-1' | placeholder_svg_tag: 'hero__placeholder' }}
+    {%- endif -%}
+  </div>
+  <div class="hero__content">
+    <div class="hero__content-inner">
+      {%- if title != blank -%}
+        <h1 class="hero__title">{{ title }}</h1>
+      {%- endif -%}
+      {%- if description != blank -%}
+        <p class="hero__description">{{ description }}</p>
+      {%- endif -%}
+      {%- if button_text != blank and button_link != blank -%}
+        <a href="{{ button_link }}" class="hero__button">{{ button_text }}</a>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Hero",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Elevate Your Wellness"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero"
+    }
+  ]
+}
+{% endschema %}
+

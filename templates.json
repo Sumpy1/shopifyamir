@@ -1,0 +1,27 @@
+{
+  "sections": {
+    "split-section": {
+      "type": "split-section"
+    },
+    "product-carousel": {
+      "type": "product-carousel"
+    },
+    "hero": {
+      "type": "hero"
+    },
+    "asymmetric-grid": {
+      "type": "asymmetric-grid"
+    },
+    "editorial": {
+      "type": "editorial"
+    }
+  },
+  "order": [
+    "split-section",
+    "product-carousel",
+    "hero",
+    "asymmetric-grid",
+    "editorial"
+  ]
+}
+

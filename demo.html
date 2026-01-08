@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CULTURE - Theme Preview</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/theme.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header" data-header>
+    <div class="header__inner">
+      <nav class="header__nav" aria-label="Primary">
+        <ul class="header__nav-list">
+          <li class="header__nav-item">
+            <a href="#" class="header__nav-link">Shop</a>
+          </li>
+          <li class="header__nav-item">
+            <a href="#" class="header__nav-link">New</a>
+          </li>
+          <li class="header__nav-item">
+            <a href="#" class="header__nav-link">About</a>
+          </li>
+        </ul>
+      </nav>
+      <div class="header__logo">
+        <a href="#" class="header__logo-link">
+          <span class="header__logo-text">CULTURE</span>
+        </a>
+      </div>
+      <div class="header__actions">
+        <button type="button" class="header__action-btn" aria-label="Search">
+          <svg class="icon icon-search" width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <circle cx="9" cy="9" r="6" stroke="currentColor" stroke-width="1.5" fill="none"/>
+            <path d="m14 14 4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </button>
+        <button type="button" class="header__action-btn" aria-label="Favorites">
+          <svg class="icon icon-heart" width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M10 17.5c-5-4-8.333-6.667-8.333-10a3.333 3.333 0 0 1 6.666 0c0 3.333 1.667 5 1.667 5s1.667-1.667 1.667-5a3.333 3.333 0 0 1 6.666 0c0 3.333-3.333 6-8.333 10z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+          </svg>
+        </button>
+        <button type="button" class="header__action-btn header__cart-btn" aria-label="Cart" data-cart-toggle>
+          <svg class="icon icon-cart" width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M2.5 2.5h2.5l1.5 10h9l1.5-10H5" stroke="currentColor" stroke-width="1.5" fill="none"/>
+            <circle cx="7.5" cy="16.5" r="1" fill="currentColor"/>
+            <circle cx="14.5" cy="16.5" r="1" fill="currentColor"/>
+          </svg>
+          <span class="header__cart-count" data-cart-count>0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="MainContent">
+    <!-- 50/50 Split Section -->
+    <section class="split-section" data-section>
+      <div class="split-section__inner">
+        <div class="split-section__item">
+          <div class="split-section__image-wrapper">
+            <div style="width: 100%; height: 100%; background: #f5f5f5; display: flex; align-items: center; justify-content: center; color: #999;">Kombucha Image</div>
+          </div>
+          <div class="split-section__content">
+            <h2 class="split-section__title">Kombucha</h2>
+            <p class="split-section__description">Fermented tea beverages for gut health</p>
+          </div>
+        </div>
+        <div class="split-section__item">
+          <div class="split-section__image-wrapper">
+            <div style="width: 100%; height: 100%; background: #f5f5f5; display: flex; align-items: center; justify-content: center; color: #999;">Prebiotic Image</div>
+          </div>
+          <div class="split-section__content">
+            <h2 class="split-section__title">Prebiotic</h2>
+            <p class="split-section__description">Nourish your microbiome naturally</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Product Carousel -->
+    <section class="product-carousel" data-section>
+      <div class="product-carousel__header">
+        <h2 class="product-carousel__title">Featured Products</h2>
+      </div>
+      <div class="product-carousel__container">
+        <div class="product-carousel__track" data-carousel-track>
+          <div class="product-card">
+            <a href="#" class="product-card__link">
+              <div class="product-card__image-wrapper">
+                <div style="width: 100%; height: 100%; background: #f0f0f0; display: flex; align-items: center; justify-content: center; color: #999;">Berry Bliss</div>
+              </div>
+              <div class="product-card__info">
+                <p class="product-card__category">Prebiotic</p>
+                <h3 class="product-card__name">Berry Bliss</h3>
+                <p class="product-card__price">$6.99</p>
+              </div>
+            </a>
+          </div>
+          <div class="product-card">
+            <a href="#" class="product-card__link">
+              <div class="product-card__image-wrapper">
+                <div style="width: 100%; height: 100%; background: #f0f0f0; display: flex; align-items: center; justify-content: center; color: #999;">Mint Refresh</div>
+              </div>
+              <div class="product-card__info">
+                <p class="product-card__category">Kombucha</p>
+                <h3 class="product-card__name">Mint Refresh</h3>
+                <p class="product-card__price">$5.99</p>
+              </div>
+            </a>
+          </div>
+          <div class="product-card">
+            <a href="#" class="product-card__link">
+              <div class="product-card__image-wrapper">
+                <div style="width: 100%; height: 100%; background: #f0f0f0; display: flex; align-items: center; justify-content: center; color: #999;">Citrus Sunrise</div>
+              </div>
+              <div class="product-card__info">
+                <p class="product-card__category">Kombucha</p>
+                <h3 class="product-card__name">Citrus Sunrise</h3>
+                <p class="product-card__price">$5.99</p>
+              </div>
+            </a>
+          </div>
+          <div class="product-card">
+            <a href="#" class="product-card__link">
+              <div class="product-card__image-wrapper">
+                <div style="width: 100%; height: 100%; background: #f0f0f0; display: flex; align-items: center; justify-content: center; color: #999;">Lavender Calm</div>
+              </div>
+              <div class="product-card__info">
+                <p class="product-card__category">Prebiotic</p>
+                <h3 class="product-card__name">Lavender Calm</h3>
+                <p class="product-card__price">$6.99</p>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Hero Section -->
+    <section class="hero" data-section>
+      <div class="hero__image-wrapper">
+        <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 2rem;">Hero Image</div>
+      </div>
+      <div class="hero__content">
+        <div class="hero__content-inner">
+          <h1 class="hero__title">Elevate Your Wellness</h1>
+          <p class="hero__description">Discover the power of fermented beverages and prebiotics for optimal gut health and overall well-being.</p>
+          <a href="#" class="hero__button">Shop Now</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Asymmetric Grid -->
+    <section class="asymmetric-grid" data-section>
+      <div class="asymmetric-grid__inner">
+        <div class="asymmetric-grid__item asymmetric-grid__item--small">
+          <div class="asymmetric-grid__image-wrapper">
+            <div style="width: 100%; height: 100%; background: #e8e8e8; display: flex; align-items: center; justify-content: center; color: #999;">Small Image</div>
+          </div>
+        </div>
+        <div class="asymmetric-grid__item asymmetric-grid__item--large">
+          <div class="asymmetric-grid__image-wrapper">
+            <div style="width: 100%; height: 100%; background: #d8d8d8; display: flex; align-items: center; justify-content: center; color: #999;">Large Image</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Editorial Section -->
+    <section class="editorial" data-section>
+      <div class="editorial__inner">
+        <div class="editorial__content">
+          <h2 class="editorial__heading">Our Story</h2>
+          <div class="editorial__text">
+            <p>CULTURE was born from a passion for wellness and a belief in the power of fermentation. We craft each beverage with care, using only the finest ingredients to support your microbiome and overall health.</p>
+            <p>Every bottle is a celebration of tradition, innovation, and the simple joy of living well.</p>
+          </div>
+          <a href="#" class="editorial__link">
+            Learn More
+            <span class="editorial__link-arrow">→</span>
+          </a>
+        </div>
+        <div class="editorial__image">
+          <div style="width: 100%; height: 100%; background: #f5f5f5; display: flex; align-items: center; justify-content: center; color: #999;">Editorial Image</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__content">
+        <div class="footer__column">
+          <h3 class="footer__title">Shop</h3>
+          <ul class="footer__links">
+            <li><a href="#">Kombucha</a></li>
+            <li><a href="#">Prebiotic</a></li>
+            <li><a href="#">Bundles</a></li>
+          </ul>
+        </div>
+        <div class="footer__column">
+          <h3 class="footer__title">About</h3>
+          <ul class="footer__links">
+            <li><a href="#">Our Story</a></li>
+            <li><a href="#">Wellness</a></li>
+          </ul>
+        </div>
+        <div class="footer__column">
+          <h3 class="footer__title">Connect</h3>
+          <ul class="footer__links">
+            <li><a href="#">Contact</a></li>
+            <li><a href="#">Newsletter</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p class="footer__copyright">&copy; 2024 CULTURE. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Cart Drawer -->
+  <div class="cart-drawer" data-cart-drawer>
+    <div class="cart-drawer__overlay" data-cart-overlay></div>
+    <div class="cart-drawer__inner">
+      <div class="cart-drawer__header">
+        <h2 class="cart-drawer__title">Shopping Bag</h2>
+        <button type="button" class="cart-drawer__close" aria-label="Close cart" data-cart-close>
+          <svg class="icon icon-close" width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="m5 5 10 10M15 5l-10 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+      <div class="cart-drawer__content" data-cart-content>
+        <div class="cart-drawer__empty" data-cart-empty>
+          <p>Your cart is empty</p>
+        </div>
+        <div class="cart-drawer__items" data-cart-items></div>
+      </div>
+      <div class="cart-drawer__footer" data-cart-footer style="display: none;">
+        <div class="cart-drawer__subtotal">
+          <span>Subtotal</span>
+          <span data-cart-subtotal>$0.00</span>
+        </div>
+        <a href="#" class="cart-drawer__checkout">Checkout</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="assets/theme.js"></script>
+</body>
+</html>
+

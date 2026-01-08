@@ -1,0 +1,113 @@
+{%- liquid
+  assign menu = section.settings.menu
+  assign logo = section.settings.logo
+-%}
+
+<header class="header" data-header>
+  <div class="header__inner">
+    <nav class="header__nav" aria-label="Primary">
+      <ul class="header__nav-list">
+        {%- for link in linklists[menu].links -%}
+          <li class="header__nav-item">
+            {%- if link.links != blank -%}
+              <div class="header__nav-dropdown">
+                <a href="{{ link.url }}" class="header__nav-link">{{ link.title }}</a>
+                <div class="header__mega-menu">
+                  <div class="header__mega-menu-inner">
+                    {%- for childlink in link.links -%}
+                      <div class="header__mega-menu-column">
+                        <a href="{{ childlink.url }}" class="header__mega-menu-title">{{ childlink.title }}</a>
+                        {%- if childlink.links != blank -%}
+                          <ul class="header__mega-menu-list">
+                            {%- for grandchildlink in childlink.links -%}
+                              <li>
+                                <a href="{{ grandchildlink.url }}" class="header__mega-menu-link">{{ grandchildlink.title }}</a>
+                              </li>
+                            {%- endfor -%}
+                          </ul>
+                        {%- endif -%}
+                      </div>
+                    {%- endfor -%}
+                  </div>
+                </div>
+              </div>
+            {%- else -%}
+              <a href="{{ link.url }}" class="header__nav-link">{{ link.title }}</a>
+            {%- endif -%}
+          </li>
+        {%- endfor -%}
+      </ul>
+    </nav>
+
+    <div class="header__logo">
+      <a href="{{ routes.root_url }}" class="header__logo-link">
+        {%- if logo != blank -%}
+          <img src="{{ logo | image_url: width: 200 }}" alt="{{ shop.name }}" width="200" height="auto">
+        {%- else -%}
+          <span class="header__logo-text">CULTURE</span>
+        {%- endif -%}
+      </a>
+    </div>
+
+    <div class="header__actions">
+      <button type="button" class="header__action-btn" aria-label="Search" data-search-toggle>
+        {% render 'icon-search' %}
+      </button>
+      <button type="button" class="header__action-btn" aria-label="Favorites">
+        {% render 'icon-heart' %}
+      </button>
+      <button type="button" class="header__action-btn header__cart-btn" aria-label="Cart" data-cart-toggle>
+        {% render 'icon-cart' %}
+        <span class="header__cart-count" data-cart-count>{{ cart.item_count }}</span>
+      </button>
+      <button type="button" class="header__mobile-menu-btn" aria-label="Menu" data-mobile-menu-toggle>
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </div>
+
+  <div class="header__mobile-menu" data-mobile-menu>
+    <div class="header__mobile-menu-inner">
+      <nav class="header__mobile-nav">
+        <ul class="header__mobile-nav-list">
+          {%- for link in linklists[menu].links -%}
+            <li class="header__mobile-nav-item">
+              <a href="{{ link.url }}" class="header__mobile-nav-link">{{ link.title }}</a>
+              {%- if link.links != blank -%}
+                <ul class="header__mobile-nav-sublist">
+                  {%- for childlink in link.links -%}
+                    <li>
+                      <a href="{{ childlink.url }}" class="header__mobile-nav-sublink">{{ childlink.title }}</a>
+                    </li>
+                  {%- endfor -%}
+                </ul>
+              {%- endif -%}
+            </li>
+          {%- endfor -%}
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Menu",
+      "default": "main-menu"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo image"
+    }
+  ]
+}
+{% endschema %}
+

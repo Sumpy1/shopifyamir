@@ -1,0 +1,140 @@
+{%- liquid
+  assign image_1 = section.settings.image_1
+  assign image_2 = section.settings.image_2
+  assign title_1 = section.settings.title_1
+  assign title_2 = section.settings.title_2
+  assign description_1 = section.settings.description_1
+  assign description_2 = section.settings.description_2
+  assign link_1 = section.settings.link_1
+  assign link_2 = section.settings.link_2
+-%}
+
+<section class="split-section" data-section>
+  <div class="split-section__inner">
+    <div class="split-section__item">
+      {%- if link_1 != blank -%}
+        <a href="{{ link_1 }}" class="split-section__link">
+      {%- endif -%}
+        <div class="split-section__image-wrapper">
+          {%- if image_1 != blank -%}
+            <img 
+              src="{{ image_1 | image_url: width: 800 }}" 
+              alt="{{ image_1.alt | escape }}"
+              class="split-section__image"
+              loading="lazy"
+              width="800"
+              height="800"
+            >
+          {%- else -%}
+            {{ 'image' | placeholder_svg_tag: 'split-section__placeholder' }}
+          {%- endif -%}
+        </div>
+        <div class="split-section__content">
+          {%- if title_1 != blank -%}
+            <h2 class="split-section__title">{{ title_1 }}</h2>
+          {%- endif -%}
+          {%- if description_1 != blank -%}
+            <p class="split-section__description">{{ description_1 }}</p>
+          {%- endif -%}
+        </div>
+      {%- if link_1 != blank -%}
+        </a>
+      {%- endif -%}
+    </div>
+
+    <div class="split-section__item">
+      {%- if link_2 != blank -%}
+        <a href="{{ link_2 }}" class="split-section__link">
+      {%- endif -%}
+        <div class="split-section__image-wrapper">
+          {%- if image_2 != blank -%}
+            <img 
+              src="{{ image_2 | image_url: width: 800 }}" 
+              alt="{{ image_2.alt | escape }}"
+              class="split-section__image"
+              loading="lazy"
+              width="800"
+              height="800"
+            >
+          {%- else -%}
+            {{ 'image' | placeholder_svg_tag: 'split-section__placeholder' }}
+          {%- endif -%}
+        </div>
+        <div class="split-section__content">
+          {%- if title_2 != blank -%}
+            <h2 class="split-section__title">{{ title_2 }}</h2>
+          {%- endif -%}
+          {%- if description_2 != blank -%}
+            <p class="split-section__description">{{ description_2 }}</p>
+          {%- endif -%}
+        </div>
+      {%- if link_2 != blank -%}
+        </a>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "50/50 Split Section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "First Item"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_1",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "title_1",
+      "label": "Title",
+      "default": "Kombucha"
+    },
+    {
+      "type": "textarea",
+      "id": "description_1",
+      "label": "Description"
+    },
+    {
+      "type": "url",
+      "id": "link_1",
+      "label": "Link"
+    },
+    {
+      "type": "header",
+      "content": "Second Item"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_2",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "title_2",
+      "label": "Title",
+      "default": "Prebiotic"
+    },
+    {
+      "type": "textarea",
+      "id": "description_2",
+      "label": "Description"
+    },
+    {
+      "type": "url",
+      "id": "link_2",
+      "label": "Link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "50/50 Split Section"
+    }
+  ]
+}
+{% endschema %}
+

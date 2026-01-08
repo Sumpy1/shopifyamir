@@ -1,0 +1,27 @@
+<div class="collection-page">
+  {%- if collection.title != blank -%}
+    <div class="collection-page__header">
+      <h1 class="collection-page__title">{{ collection.title }}</h1>
+      {%- if collection.description != blank -%}
+        <div class="collection-page__description">{{ collection.description }}</div>
+      {%- endif -%}
+    </div>
+  {%- endif -%}
+
+  <div class="collection-page__grid">
+    {%- if collection.products.size > 0 -%}
+      {%- for product in collection.products -%}
+        {% render 'product-card', product: product, show_category: true %}
+      {%- endfor -%}
+    {%- else -%}
+      <p class="collection-page__empty">No products found.</p>
+    {%- endif -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Collection Template"
+}
+{% endschema %}
+
