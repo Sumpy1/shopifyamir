@@ -1,0 +1,71 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "current": {
+    "sections": {
+      "header": {
+        "type": "header",
+        "settings": {
+          "menu": "main-menu"
+        }
+      },
+      "split-section": {
+        "type": "split-section",
+        "settings": {
+          "image_1": "shopify://shop_images/MeadowforWBSite_5a44cf7f-bcff-4619-bd3e-61df630e9c26.webp",
+          "title_1": "Kombucha",
+          "description_1": "",
+          "link_1": "",
+          "image_2": "shopify://shop_images/f0466ed591ce1942a4aa1fe9724ef5b60516c491d737c8c1a8f09d92dcf114c3.webp",
+          "title_2": "Prebiotic",
+          "description_2": "",
+          "link_2": ""
+        }
+      },
+      "product-carousel": {
+        "type": "product-carousel",
+        "settings": {
+          "title": "Featured Products",
+          "collection": ""
+        }
+      },
+      "hero": {
+        "type": "hero",
+        "settings": {
+          "title": "Elevate Your Wellness",
+          "description": "",
+          "button_text": "",
+          "button_link": ""
+        }
+      },
+      "asymmetric-grid": {
+        "type": "asymmetric-grid",
+        "settings": {
+          "link_1": "",
+          "link_2": ""
+        }
+      },
+      "editorial": {
+        "type": "editorial",
+        "settings": {
+          "heading": "Our Story",
+          "text": "",
+          "link_text": "Learn More",
+          "link_url": ""
+        }
+      },
+      "footer": {
+        "type": "footer",
+        "settings": {}
+      }
+    },
+    "content_for_index": []
+  }
+}
