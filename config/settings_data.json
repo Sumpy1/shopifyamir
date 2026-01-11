@@ -19,11 +19,11 @@
       "split-section": {
         "type": "split-section",
         "settings": {
-          "image_1": "shopify://shop_images/MeadowforWBSite_5a44cf7f-bcff-4619-bd3e-61df630e9c26.webp",
+          "image_1": "shopify://shop_images/Gemini_Generated_Image_ffcey9ffcey9ffce.png",
           "title_1": "Kombucha",
           "description_1": "",
           "link_1": "",
-          "image_2": "shopify://shop_images/f0466ed591ce1942a4aa1fe9724ef5b60516c491d737c8c1a8f09d92dcf114c3.webp",
+          "image_2": "shopify://shop_images/Gemini_Generated_Image_fmirmsfmirmsfmir.png",
           "title_2": "Prebiotic",
           "description_2": "",
           "link_2": ""
@@ -33,7 +33,7 @@
         "type": "product-carousel",
         "settings": {
           "title": "Featured Products",
-          "collection": ""
+          "collection": "frontpage"
         }
       },
       "hero": {
