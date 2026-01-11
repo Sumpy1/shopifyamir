@@ -50,6 +50,7 @@
         "type": "asymmetric-grid",
         "settings": {
           "link_1": "",
+          "image_2": "shopify://shop_images/GettyImages-1400340461.jpg",
           "link_2": ""
         }
       },
@@ -59,7 +60,8 @@
           "heading": "Our Story",
           "text": "",
           "link_text": "Learn More",
-          "link_url": ""
+          "link_url": "",
+          "image": "shopify://shop_images/GettyImages-1400340461.jpg"
         }
       },
       "footer": {
