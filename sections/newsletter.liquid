@@ -1,0 +1,209 @@
+<div class="newsletter-page">
+  <div class="newsletter-page__inner">
+    <!-- Hero Image Section -->
+    <div class="newsletter-page__hero">
+      {%- if section.settings.hero_image != blank -%}
+        <img
+          src="{{ section.settings.hero_image | image_url: width: 1200 }}"
+          alt="{{ section.settings.hero_image.alt | default: 'Kombucha Newsletter' }}"
+          class="newsletter-page__hero-image"
+          width="1200"
+          height="600"
+          loading="eager"
+        >
+      {%- else -%}
+        <div class="newsletter-page__hero-placeholder">
+          <svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="100" height="100" fill="#f5f5f5"/>
+            <path d="M30 35h40M30 50h40M30 65h25" stroke="#999" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <p>Newsletter Image</p>
+        </div>
+      {%- endif -%}
+    </div>
+
+    <!-- Content Section -->
+    <div class="newsletter-page__content">
+      <div class="newsletter-page__header">
+        <h1 class="newsletter-page__title">{{ section.settings.title | default: 'Kombucha Newsletter' }}</h1>
+        {%- if section.settings.subtitle != blank -%}
+          <p class="newsletter-page__subtitle">{{ section.settings.subtitle }}</p>
+        {%- endif -%}
+      </div>
+
+      <!-- Kombucha Info Section -->
+      <div class="newsletter-page__info">
+        {%- if section.settings.info_text != blank -%}
+          <div class="newsletter-page__info-content">
+            {{ section.settings.info_text }}
+          </div>
+        {%- else -%}
+          <div class="newsletter-page__info-content">
+            <p>
+              Kombucha is a fermented tea beverage that has been enjoyed for thousands of years. 
+              Originating in Northeast China around 220 BCE, kombucha is made by fermenting sweetened 
+              tea with a symbiotic culture of bacteria and yeast (SCOBY). This ancient elixir is rich 
+              in probiotics, antioxidants, and beneficial acids that support gut health and overall wellness.
+            </p>
+            <p>
+              At KombuchaMarket, we're passionate about bringing you the finest selection of artisanal 
+              kombucha from America's most skilled brewers. Each bottle represents hours of careful 
+              fermentation, quality ingredients, and traditional brewing methods.
+            </p>
+            <p>
+              Whether you're a kombucha enthusiast or just discovering this probiotic powerhouse, 
+              our newsletter is your gateway to the world of fermented beverages.
+            </p>
+          </div>
+        {%- endif -%}
+      </div>
+
+      <!-- Newsletter Signup Section -->
+      <div class="newsletter-page__signup">
+        <div class="newsletter-page__signup-content">
+          <h2 class="newsletter-page__signup-title">
+            {{ section.settings.signup_title | default: 'Get Weekly Kombucha Insights' }}
+          </h2>
+          <p class="newsletter-page__signup-description">
+            {{ section.settings.signup_description | default: 'Want to get weekly newsletters about kombucha and learn how to make it yourself? Sign up for our newsletter to receive:' }}
+          </p>
+          <ul class="newsletter-page__benefits">
+            {%- if section.settings.benefit_1 != blank -%}
+              <li>{{ section.settings.benefit_1 }}</li>
+            {%- else -%}
+              <li>Weekly kombucha recipes and brewing tips</li>
+            {%- endif -%}
+            {%- if section.settings.benefit_2 != blank -%}
+              <li>{{ section.settings.benefit_2 }}</li>
+            {%- else -%}
+              <li>Expert guides on fermentation techniques</li>
+            {%- endif -%}
+            {%- if section.settings.benefit_3 != blank -%}
+              <li>{{ section.settings.benefit_3 }}</li>
+            {%- else -%}
+              <li>Spotlights on featured brands and new arrivals</li>
+            {%- endif -%}
+            {%- if section.settings.benefit_4 != blank -%}
+              <li>{{ section.settings.benefit_4 }}</li>
+            {%- else -%}
+              <li>Exclusive discounts and special offers</li>
+            {%- endif -%}
+          </ul>
+
+          <!-- Newsletter Form -->
+          <div class="newsletter-page__form-wrapper">
+            {% form 'customer', class: 'newsletter-page__form', id: 'newsletter-page-form' %}
+              {%- if form.posted_successfully? -%}
+                <div class="newsletter-page__success">
+                  <p>Thank you for subscribing! Check your email to confirm your subscription.</p>
+                </div>
+              {%- else -%}
+                <div class="newsletter-page__form-group">
+                  <input 
+                    type="email" 
+                    name="contact[email]" 
+                    class="newsletter-page__input" 
+                    placeholder="Enter your email address" 
+                    required 
+                    aria-label="Email address"
+                    value=""
+                  >
+                  <input type="hidden" name="contact[tags]" value="newsletter">
+                  <button type="submit" class="newsletter-page__submit">Subscribe</button>
+                </div>
+                {%- if form.errors -%}
+                  <div class="newsletter-page__errors">
+                    {%- for field in form.errors -%}
+                      <p>{{ form.errors[field] }}</p>
+                    {%- endfor -%}
+                  </div>
+                {%- endif -%}
+              {%- endif -%}
+            {% endform %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Newsletter Page",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Hero Section"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Hero Image"
+    },
+    {
+      "type": "header",
+      "content": "Page Content"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Page Title",
+      "default": "Kombucha Newsletter"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle"
+    },
+    {
+      "type": "richtext",
+      "id": "info_text",
+      "label": "Kombucha Information Text"
+    },
+    {
+      "type": "header",
+      "content": "Signup Section"
+    },
+    {
+      "type": "text",
+      "id": "signup_title",
+      "label": "Signup Title",
+      "default": "Get Weekly Kombucha Insights"
+    },
+    {
+      "type": "textarea",
+      "id": "signup_description",
+      "label": "Signup Description",
+      "default": "Want to get weekly newsletters about kombucha and learn how to make it yourself? Sign up for our newsletter to receive:"
+    },
+    {
+      "type": "header",
+      "content": "Newsletter Benefits"
+    },
+    {
+      "type": "text",
+      "id": "benefit_1",
+      "label": "Benefit 1",
+      "default": "Weekly kombucha recipes and brewing tips"
+    },
+    {
+      "type": "text",
+      "id": "benefit_2",
+      "label": "Benefit 2",
+      "default": "Expert guides on fermentation techniques"
+    },
+    {
+      "type": "text",
+      "id": "benefit_3",
+      "label": "Benefit 3",
+      "default": "Spotlights on featured brands and new arrivals"
+    },
+    {
+      "type": "text",
+      "id": "benefit_4",
+      "label": "Benefit 4",
+      "default": "Exclusive discounts and special offers"
+    }
+  ]
+}
+{% endschema %}

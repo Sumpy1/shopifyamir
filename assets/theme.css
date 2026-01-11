@@ -1856,6 +1856,216 @@ a:hover {
   transform: translateX(4px);
 }
 
+/* Newsletter Page */
+.newsletter-page {
+  padding: 0;
+}
+
+.newsletter-page__inner {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.newsletter-page__hero {
+  width: 100%;
+  margin-bottom: var(--spacing-xl);
+}
+
+.newsletter-page__hero-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+.newsletter-page__hero-placeholder {
+  width: 100%;
+  aspect-ratio: 2 / 1;
+  background: #f5f5f5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-secondary);
+  border: 1px dashed var(--color-border);
+}
+
+.newsletter-page__hero-placeholder p {
+  margin-top: var(--spacing-sm);
+  font-size: 0.875rem;
+}
+
+.newsletter-page__content {
+  padding: 0 var(--spacing-md) var(--spacing-xl);
+}
+
+.newsletter-page__header {
+  text-align: center;
+  margin-bottom: var(--spacing-xl);
+}
+
+.newsletter-page__title {
+  font-size: 2.5rem;
+  font-weight: var(--font-weight-normal);
+  margin-bottom: var(--spacing-sm);
+}
+
+@media (min-width: 768px) {
+  .newsletter-page__title {
+    font-size: 3rem;
+  }
+}
+
+.newsletter-page__subtitle {
+  font-size: 1rem;
+  color: var(--color-text-secondary);
+}
+
+.newsletter-page__info {
+  margin-bottom: var(--spacing-xl);
+}
+
+.newsletter-page__info-content {
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+  line-height: 1.8;
+}
+
+.newsletter-page__info-content p {
+  margin-bottom: var(--spacing-md);
+}
+
+.newsletter-page__info-content p:last-child {
+  margin-bottom: 0;
+}
+
+.newsletter-page__signup {
+  background: #fafafa;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  padding: var(--spacing-xl);
+  margin-top: var(--spacing-xl);
+}
+
+.newsletter-page__signup-title {
+  font-size: 1.75rem;
+  font-weight: var(--font-weight-normal);
+  margin-bottom: var(--spacing-sm);
+}
+
+@media (min-width: 768px) {
+  .newsletter-page__signup-title {
+    font-size: 2rem;
+  }
+}
+
+.newsletter-page__signup-description {
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+  line-height: 1.8;
+  margin-bottom: var(--spacing-md);
+}
+
+.newsletter-page__benefits {
+  list-style: none;
+  padding: 0;
+  margin: var(--spacing-md) 0 var(--spacing-lg);
+}
+
+.newsletter-page__benefits li {
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+  padding-left: 1.5rem;
+  position: relative;
+  margin-bottom: var(--spacing-sm);
+  line-height: 1.6;
+}
+
+.newsletter-page__benefits li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--color-foreground);
+  font-weight: var(--font-weight-medium);
+}
+
+.newsletter-page__form-wrapper {
+  margin-top: var(--spacing-lg);
+}
+
+.newsletter-page__form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.newsletter-page__form-group {
+  display: flex;
+  gap: var(--spacing-sm);
+  flex-direction: column;
+}
+
+@media (min-width: 640px) {
+  .newsletter-page__form-group {
+    flex-direction: row;
+  }
+}
+
+.newsletter-page__input {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--color-border);
+  font-size: 0.875rem;
+  font-family: var(--font-body-family);
+  background: var(--color-background);
+  color: var(--color-foreground);
+}
+
+.newsletter-page__input:focus {
+  outline: none;
+  border-color: var(--color-foreground);
+}
+
+.newsletter-page__submit {
+  padding: 0.75rem 2rem;
+  background: var(--color-foreground);
+  color: var(--color-background);
+  border: none;
+  font-size: 0.875rem;
+  font-weight: var(--font-weight-medium);
+  cursor: pointer;
+  transition: opacity 0.2s;
+  font-family: inherit;
+  white-space: nowrap;
+}
+
+.newsletter-page__submit:hover {
+  opacity: 0.9;
+}
+
+.newsletter-page__success {
+  padding: var(--spacing-md);
+  background: #f0f0f0;
+  border: 1px solid var(--color-border);
+  color: var(--color-foreground);
+  font-size: 0.875rem;
+  text-align: center;
+  border-radius: 4px;
+}
+
+.newsletter-page__errors {
+  padding: var(--spacing-sm);
+  background: #fff0f0;
+  border: 1px solid #ffcccc;
+  color: #cc0000;
+  font-size: 0.875rem;
+  border-radius: 4px;
+}
+
+.newsletter-page__errors p {
+  margin: 0;
+}
+
 /* Animations */
 [data-section] {
   opacity: 0;
@@ -1959,6 +2169,14 @@ a:hover {
 
   .about-mission__quote {
     font-size: 1.25rem;
+  }
+
+  .newsletter-page__title {
+    font-size: 2rem;
+  }
+
+  .newsletter-page__signup-title {
+    font-size: 1.5rem;
   }
 
   .cart-drawer {
