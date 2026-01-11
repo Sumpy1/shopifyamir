@@ -19,11 +19,11 @@
       "split-section": {
         "type": "split-section",
         "settings": {
-          "image_1": "shopify://shop_images/Gemini_Generated_Image_ffcey9ffcey9ffce.png",
+          "image_1": "shopify://shop_images/NA_Ginger_1024x1024_ce3479cd-4499-4868-9bc7-a5a332fb627d.webp",
           "title_1": "Kombucha",
           "description_1": "",
           "link_1": "",
-          "image_2": "shopify://shop_images/Gemini_Generated_Image_fmirmsfmirmsfmir.png",
+          "image_2": "shopify://shop_images/NA_CM_1024x1024_fb98996d-464b-4f25-bb16-31783fdb2f6d.webp",
           "title_2": "Prebiotic",
           "description_2": "",
           "link_2": ""
@@ -33,13 +33,12 @@
         "type": "product-carousel",
         "settings": {
           "title": "Featured Products",
-          "collection": "frontpage"
+          "collection": "walker-brothers"
         }
       },
       "hero": {
         "type": "hero",
         "settings": {
-          "image": "shopify://shop_images/pexels-brett-sayles-4879356.jpg",
           "title": "Elevate Your Wellness",
           "description": "",
           "button_text": "",
@@ -59,8 +58,7 @@
           "heading": "Our Story",
           "text": "",
           "link_text": "Learn More",
-          "link_url": "",
-          "image": "shopify://shop_images/nashskyline.jpg"
+          "link_url": ""
         }
       },
       "footer": {
