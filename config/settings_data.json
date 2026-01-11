@@ -39,6 +39,7 @@
       "hero": {
         "type": "hero",
         "settings": {
+          "image": "shopify://shop_images/Gemini_Generated_Image_984kqu984kqu984k.png",
           "title": "Elevate Your Wellness",
           "description": "",
           "button_text": "",
