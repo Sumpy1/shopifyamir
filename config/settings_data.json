@@ -39,6 +39,7 @@
       "hero": {
         "type": "hero",
         "settings": {
+          "image": "shopify://shop_images/pexels-brett-sayles-4879356.jpg",
           "title": "Elevate Your Wellness",
           "description": "",
           "button_text": "",
