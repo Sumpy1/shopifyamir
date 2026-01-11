@@ -1,0 +1,347 @@
+<div class="about-page">
+  <!-- Hero Section -->
+  <section class="about-hero">
+    {%- if section.settings.hero_image != blank -%}
+      <div class="about-hero__image-wrapper">
+        <img
+          src="{{ section.settings.hero_image | image_url: width: 2000 }}"
+          alt="{{ section.settings.hero_image.alt | default: 'Nashville skyline' }}"
+          class="about-hero__image"
+          width="2000"
+          height="1200"
+          loading="eager"
+        >
+        <div class="about-hero__overlay"></div>
+      </div>
+    {%- endif -%}
+    <div class="about-hero__content">
+      <span class="about-hero__label">{{ section.settings.hero_label | default: 'Our Story' }}</span>
+      <h1 class="about-hero__title">
+        {%- if section.settings.hero_title != blank -%}
+          {{ section.settings.hero_title | replace: '\n', '<br>' }}
+        {%- else -%}
+          American Brew Brand<br>Artisanal Kombucha
+        {%- endif -%}
+      </h1>
+    </div>
+  </section>
+
+  <!-- Origin Story -->
+  <section class="about-section">
+    <div class="about-section__inner">
+      <div class="about-section__grid">
+        <div class="about-section__content">
+          <span class="about-section__label">{{ section.settings.origin_label | default: 'How It Began' }}</span>
+          <h2 class="about-section__title">
+            {%- if section.settings.origin_title != blank -%}
+              {{ section.settings.origin_title | replace: '\n', '<br>' }}
+            {%- else -%}
+              Born from a Love of<br>Craft & Community
+            {%- endif -%}
+          </h2>
+          <div class="about-section__text">
+            {%- if section.settings.origin_text != blank -%}
+              {{ section.settings.origin_text }}
+            {%- else -%}
+              <p>
+                KombuchaMarket started in 2019 with a simple observation: America had 
+                an incredible community of kombucha artisans, but no dedicated space to 
+                showcase their craft. We set out to change that.
+              </p>
+              <p>
+                What began as a weekend pop-up evolved 
+                into America's premier destination for fermented beverages. We've tasted 
+                thousands of batches, visited countless brewing facilities, and built 
+                relationships with producers who share our passion for quality.
+              </p>
+              <p>
+                Today, we're proud to represent America's finest kombucha artisans—each 
+                one selected for their commitment to traditional brewing methods, 
+                exceptional ingredients, and genuine care for their customers' wellbeing.
+              </p>
+            {%- endif -%}
+          </div>
+        </div>
+        <div class="about-section__image-wrapper">
+          {%- if section.settings.origin_image != blank -%}
+            <img
+              src="{{ section.settings.origin_image | image_url: width: 800 }}"
+              alt="{{ section.settings.origin_image.alt | default: 'Kombucha art' }}"
+              class="about-section__image"
+              width="800"
+              height="800"
+              loading="lazy"
+            >
+          {%- endif -%}
+          <div class="about-section__image-accent"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mission Statement -->
+  <section class="about-mission">
+    <div class="about-mission__inner">
+      <span class="about-mission__label">{{ section.settings.mission_label | default: 'Our Mission' }}</span>
+      <blockquote class="about-mission__quote">
+        {{ section.settings.mission_text | default: '"To connect discerning consumers with exceptional kombucha makers, fostering a community where craft, wellness, and taste converge."' }}
+      </blockquote>
+      <div class="about-mission__divider"></div>
+    </div>
+  </section>
+
+  <!-- Values Grid -->
+  <section class="about-values">
+    <div class="about-values__inner">
+      <div class="about-values__header">
+        <span class="about-values__label">{{ section.settings.values_label | default: 'What We Believe' }}</span>
+        <h2 class="about-values__title">{{ section.settings.values_title | default: 'Our Values' }}</h2>
+      </div>
+
+      <div class="about-values__grid">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'value' -%}
+            <article class="value-card" {{ block.shopify_attributes }}>
+              <h3 class="value-card__title">{{ block.settings.title }}</h3>
+              <p class="value-card__description">{{ block.settings.description }}</p>
+            </article>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    </div>
+  </section>
+
+  <!-- Nashville Section -->
+  <section class="about-nashville">
+    <div class="about-nashville__inner">
+      <span class="about-nashville__label">{{ section.settings.nashville_label | default: 'Our Home' }}</span>
+      <h2 class="about-nashville__title">{{ section.settings.nashville_title | default: 'Proudly American' }}</h2>
+      <div class="about-nashville__text">
+        {%- if section.settings.nashville_text != blank -%}
+          {{ section.settings.nashville_text }}
+        {%- else -%}
+          <p>
+            KombuchaMarket represents the spirit of American craftsmanship, 
+            authenticity, and community. We're inspired by the entrepreneurial energy 
+            that makes America a hub for makers, artists, and dreamers.
+          </p>
+          <p>
+            From the farmers who grow our brewers' ingredients to the local shops 
+            that stock our featured brands' products, we're proud to be part of America's 
+            thriving food and beverage scene.
+          </p>
+        {%- endif -%}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="about-cta">
+    <div class="about-cta__inner">
+      <h2 class="about-cta__title">{{ section.settings.cta_title | default: 'Ready to Explore?' }}</h2>
+      <p class="about-cta__description">{{ section.settings.cta_description | default: "Discover our curated selection of America's finest kombucha." }}</p>
+      <div class="about-cta__buttons">
+        <a href="{% if section.settings.cta_shop_url != blank %}{{ section.settings.cta_shop_url }}{% else %}/collections/all{% endif %}" class="about-cta__button about-cta__button--primary">
+          Shop Collection
+          <svg class="about-cta__arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M6 12l4-4-4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <a href="{% if section.settings.cta_brands_url != blank %}{{ section.settings.cta_brands_url }}{% else %}/pages/brands{% endif %}" class="about-cta__button about-cta__button--secondary">
+          Meet Our Brands
+        </a>
+      </div>
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "About Page",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Hero Section"
+    },
+    {
+      "type": "text",
+      "id": "hero_label",
+      "label": "Hero Label",
+      "default": "Our Story"
+    },
+    {
+      "type": "textarea",
+      "id": "hero_title",
+      "label": "Hero Title",
+      "default": "American Brew Brand\nArtisanal Kombucha",
+      "info": "Use \\n for line breaks"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Hero Image"
+    },
+    {
+      "type": "header",
+      "content": "Origin Story"
+    },
+    {
+      "type": "text",
+      "id": "origin_label",
+      "label": "Origin Label",
+      "default": "How It Began"
+    },
+    {
+      "type": "textarea",
+      "id": "origin_title",
+      "label": "Origin Title",
+      "default": "Born from a Love of\nCraft & Community",
+      "info": "Use \\n for line breaks"
+    },
+    {
+      "type": "richtext",
+      "id": "origin_text",
+      "label": "Origin Text"
+    },
+    {
+      "type": "image_picker",
+      "id": "origin_image",
+      "label": "Origin Image"
+    },
+    {
+      "type": "header",
+      "content": "Mission Statement"
+    },
+    {
+      "type": "text",
+      "id": "mission_label",
+      "label": "Mission Label",
+      "default": "Our Mission"
+    },
+    {
+      "type": "textarea",
+      "id": "mission_text",
+      "label": "Mission Text",
+      "default": "\"To connect discerning consumers with exceptional kombucha makers, fostering a community where craft, wellness, and taste converge.\""
+    },
+    {
+      "type": "header",
+      "content": "Values Section"
+    },
+    {
+      "type": "text",
+      "id": "values_label",
+      "label": "Values Label",
+      "default": "What We Believe"
+    },
+    {
+      "type": "text",
+      "id": "values_title",
+      "label": "Values Title",
+      "default": "Our Values"
+    },
+    {
+      "type": "header",
+      "content": "Nashville Section"
+    },
+    {
+      "type": "text",
+      "id": "nashville_label",
+      "label": "Nashville Label",
+      "default": "Our Home"
+    },
+    {
+      "type": "text",
+      "id": "nashville_title",
+      "label": "Nashville Title",
+      "default": "Proudly American"
+    },
+    {
+      "type": "richtext",
+      "id": "nashville_text",
+      "label": "Nashville Text"
+    },
+    {
+      "type": "header",
+      "content": "CTA Section"
+    },
+    {
+      "type": "text",
+      "id": "cta_title",
+      "label": "CTA Title",
+      "default": "Ready to Explore?"
+    },
+    {
+      "type": "text",
+      "id": "cta_description",
+      "label": "CTA Description",
+      "default": "Discover our curated selection of America's finest kombucha."
+    },
+    {
+      "type": "url",
+      "id": "cta_shop_url",
+      "label": "Shop Collection URL"
+    },
+    {
+      "type": "url",
+      "id": "cta_brands_url",
+      "label": "Brands Page URL"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "value",
+      "name": "Value",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Value Title",
+          "default": "Value Title"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Value Description",
+          "default": "Value description"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "About Page",
+      "blocks": [
+        {
+          "type": "value",
+          "settings": {
+            "title": "Craft First",
+            "description": "Every bottle we curate represents countless hours of careful fermentation, quality ingredients, and artisanal expertise."
+          }
+        },
+        {
+          "type": "value",
+          "settings": {
+            "title": "Local Roots",
+            "description": "We prioritize American brewers and source ingredients from local farms whenever possible."
+          }
+        },
+        {
+          "type": "value",
+          "settings": {
+            "title": "Wellness Focused",
+            "description": "Gut health isn't a trend—it's a lifestyle. We believe in the transformative power of probiotics."
+          }
+        },
+        {
+          "type": "value",
+          "settings": {
+            "title": "Community Driven",
+            "description": "We're more than a marketplace. We're a gathering place for kombucha lovers and wellness enthusiasts."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

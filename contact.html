@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact - KombuchaMarket</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/theme.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header" data-header>
+    <div class="header__inner">
+      <nav class="header__nav" aria-label="Primary">
+        <ul class="header__nav-list">
+          <li class="header__nav-item">
+            <a href="demo.html" class="header__nav-link">Shop</a>
+          </li>
+          <li class="header__nav-item">
+            <a href="demo.html" class="header__nav-link">New</a>
+          </li>
+          <li class="header__nav-item">
+            <a href="demo.html" class="header__nav-link">About</a>
+          </li>
+        </ul>
+      </nav>
+      <div class="header__logo">
+        <a href="demo.html" class="header__logo-link">
+          <span class="header__logo-text">KombuchaMarket</span>
+        </a>
+      </div>
+      <div class="header__actions">
+        <button type="button" class="header__action-btn" aria-label="Search">
+          <svg class="icon icon-search" width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <circle cx="9" cy="9" r="6" stroke="currentColor" stroke-width="1.5" fill="none"/>
+            <path d="m14 14 4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </button>
+        <button type="button" class="header__action-btn" aria-label="Favorites">
+          <svg class="icon icon-heart" width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M10 17.5c-5-4-8.333-6.667-8.333-10a3.333 3.333 0 0 1 6.666 0c0 3.333 1.667 5 1.667 5s1.667-1.667 1.667-5a3.333 3.333 0 0 1 6.666 0c0 3.333-3.333 6-8.333 10z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+          </svg>
+        </button>
+        <button type="button" class="header__action-btn header__cart-btn" aria-label="Cart" data-cart-toggle>
+          <svg class="icon icon-cart" width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M2.5 2.5h2.5l1.5 10h9l1.5-10H5" stroke="currentColor" stroke-width="1.5" fill="none"/>
+            <circle cx="7.5" cy="16.5" r="1" fill="currentColor"/>
+            <circle cx="14.5" cy="16.5" r="1" fill="currentColor"/>
+          </svg>
+          <span class="header__cart-count" data-cart-count>0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="MainContent">
+    <!-- Contact Page -->
+    <div class="contact-page">
+      <div class="contact-page__inner">
+        <div class="contact-page__header">
+          <h1 class="contact-page__title">Contact Us</h1>
+          <div class="contact-page__content">
+            <p>Have a question or want to get in touch? We'd love to hear from you!</p>
+          </div>
+        </div>
+
+        <div class="contact-page__form-wrapper">
+          <form class="contact-form" id="contact-form" onsubmit="alert('This is a preview. In Shopify, this form will submit properly.'); return false;">
+            <div class="contact-form__field">
+              <label for="contact-name" class="contact-form__label">Name</label>
+              <input 
+                type="text" 
+                id="contact-name" 
+                name="contact[name]" 
+                class="contact-form__input" 
+                required
+                aria-label="Your name"
+              >
+            </div>
+
+            <div class="contact-form__field">
+              <label for="contact-email" class="contact-form__label">Email</label>
+              <input 
+                type="email" 
+                id="contact-email" 
+                name="contact[email]" 
+                class="contact-form__input" 
+                required
+                aria-label="Your email"
+              >
+            </div>
+
+            <div class="contact-form__field">
+              <label for="contact-subject" class="contact-form__label">Subject</label>
+              <input 
+                type="text" 
+                id="contact-subject" 
+                name="contact[subject]" 
+                class="contact-form__input" 
+                aria-label="Subject"
+              >
+            </div>
+
+            <div class="contact-form__field">
+              <label for="contact-message" class="contact-form__label">Message</label>
+              <textarea 
+                id="contact-message" 
+                name="contact[body]" 
+                class="contact-form__textarea" 
+                rows="6" 
+                required
+                aria-label="Your message"
+              ></textarea>
+            </div>
+
+            <button type="submit" class="contact-form__submit">Send Message</button>
+          </form>
+
+          <div class="contact-page__info">
+            <h2 class="contact-page__info-title">Get in Touch</h2>
+            <p class="contact-page__info-text">
+              KombuchaMarket is Nashville's premier marketplace for discovering the best kombucha products. 
+              We feature products from various brands to help you explore the kombucha world.
+            </p>
+            <p class="contact-page__info-note">
+              <strong>Note:</strong> We are not an official retailer or partner of the brands featured. 
+              We simply showcase products to help you discover great kombucha options in Nashville.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__content">
+        <div class="footer__column">
+          <h3 class="footer__title">Shop</h3>
+          <ul class="footer__links">
+            <li><a href="demo.html">Kombucha</a></li>
+            <li><a href="demo.html">Prebiotic</a></li>
+            <li><a href="demo.html">Bundles</a></li>
+          </ul>
+        </div>
+        <div class="footer__column">
+          <h3 class="footer__title">About</h3>
+          <ul class="footer__links">
+            <li><a href="demo.html">Our Story</a></li>
+            <li><a href="demo.html">Wellness</a></li>
+          </ul>
+        </div>
+        <div class="footer__column">
+          <h3 class="footer__title">Connect</h3>
+          <ul class="footer__links">
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="demo.html">Newsletter</a></li>
+          </ul>
+        </div>
+        <div class="footer__column footer__newsletter">
+          <h3 class="footer__title">Newsletter</h3>
+          <p class="footer__newsletter-text">Stay updated with Nashville's best kombucha finds</p>
+          <form class="footer__newsletter-form" id="newsletter-form" onsubmit="alert('This is a preview. In Shopify, this will subscribe properly.'); return false;">
+            <input 
+              type="email" 
+              name="email" 
+              class="footer__newsletter-input" 
+              placeholder="Enter your email" 
+              required 
+              aria-label="Email address"
+            >
+            <button type="submit" class="footer__newsletter-button">Subscribe</button>
+          </form>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p class="footer__disclaimer">KombuchaMarket is a Nashville-based marketplace featuring kombucha products. We are not an official retailer or partner of the brands featured.</p>
+        <p class="footer__copyright">&copy; 2024 KombuchaMarket. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/theme.js"></script>
+</body>
+</html>

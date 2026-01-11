@@ -1,0 +1,192 @@
+<div class="brands-page">
+  <div class="brands-page__inner">
+    <!-- Page Header -->
+    <div class="brands-page__header">
+      <span class="brands-page__label">Featured Brands</span>
+      <h1 class="brands-page__title">{{ page.title | default: 'Featured Kombucha Brands' }}</h1>
+      {%- if page.content != blank -%}
+        <div class="brands-page__description">{{ page.content }}</div>
+      {%- else -%}
+        <p class="brands-page__description">
+          We feature America's most distinguished kombucha artisans to bring you 
+          the finest selection of craft fermented beverages. Each brand brings unique flavors 
+          and brewing techniques to our curated collection.
+        </p>
+      {%- endif -%}
+    </div>
+
+    <!-- Brands Grid -->
+    <div class="brands-page__grid">
+      {%- for block in section.blocks -%}
+        {%- assign brand = block.settings -%}
+        <a href="{{ brand.collection_url | default: '/collections/all' }}" class="brands-page__card" {{ block.shopify_attributes }}>
+          <article class="brand-card">
+            <div class="brand-card__image-wrapper">
+              {%- if brand.image != blank -%}
+                <img
+                  src="{{ brand.image | image_url: width: 600 }}"
+                  alt="{{ brand.name }}"
+                  class="brand-card__image"
+                  width="600"
+                  height="600"
+                  loading="lazy"
+                >
+              {%- else -%}
+                <div class="brand-card__placeholder">
+                  {{ brand.name | first }}
+                </div>
+              {%- endif -%}
+            </div>
+            <div class="brand-card__content">
+              {%- if brand.tagline != blank -%}
+                <span class="brand-card__tagline">{{ brand.tagline }}</span>
+              {%- endif -%}
+              <h3 class="brand-card__name">{{ brand.name }}</h3>
+              {%- if brand.description != blank -%}
+                <p class="brand-card__description">{{ brand.description }}</p>
+              {%- endif -%}
+              <div class="brand-card__link">
+                <span>Shop Collection</span>
+                <svg class="brand-card__arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                  <path d="M6 12l4-4-4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+            </div>
+          </article>
+        </a>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Brands Page",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "brand",
+      "name": "Brand",
+      "settings": [
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Brand Name",
+          "default": "Brand Name"
+        },
+        {
+          "type": "text",
+          "id": "tagline",
+          "label": "Tagline",
+          "default": "Tagline"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "Brand description"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Brand Image"
+        },
+        {
+          "type": "url",
+          "id": "collection_url",
+          "label": "Collection URL",
+          "info": "Link to brand's collection page"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Brands Page",
+      "blocks": [
+        {
+          "type": "brand",
+          "settings": {
+            "name": "Walker Brother",
+            "tagline": "American Original",
+            "description": "Small-batch kombucha crafted with local ingredients",
+            "collection_url": "/collections/walker-brother"
+          }
+        },
+        {
+          "type": "brand",
+          "settings": {
+            "name": "Synergy",
+            "tagline": "Organic & Raw",
+            "description": "Premium organic kombucha with live probiotic cultures",
+            "collection_url": "/collections/synergy"
+          }
+        },
+        {
+          "type": "brand",
+          "settings": {
+            "name": "Health-Ade",
+            "tagline": "Fermented Fresh",
+            "description": "Hand-crafted kombucha using traditional fermentation methods",
+            "collection_url": "/collections/health-ade"
+          }
+        },
+        {
+          "type": "brand",
+          "settings": {
+            "name": "Kevita",
+            "tagline": "Sparkling Probiotics",
+            "description": "Refreshing sparkling probiotic drinks with real fruit flavors",
+            "collection_url": "/collections/kevita"
+          }
+        },
+        {
+          "type": "brand",
+          "settings": {
+            "name": "Katalyst Kombucha",
+            "tagline": "Energizing Elixir",
+            "description": "Premium kombucha crafted to energize and revitalize with natural ingredients",
+            "collection_url": "/collections/katalyst-kombucha"
+          }
+        },
+        {
+          "type": "brand",
+          "settings": {
+            "name": "Brew Dr.",
+            "tagline": "Organic Tea Culture",
+            "description": "Organic kombucha brewed with premium tea and real ingredients",
+            "collection_url": "/collections/brew-dr"
+          }
+        },
+        {
+          "type": "brand",
+          "settings": {
+            "name": "Remedy Kombucha",
+            "tagline": "Zero Sugar",
+            "description": "Delicious kombucha with zero sugar and natural flavors",
+            "collection_url": "/collections/remedy-kombucha"
+          }
+        },
+        {
+          "type": "brand",
+          "settings": {
+            "name": "Humm Kombucha",
+            "tagline": "Live Cultures",
+            "description": "Small-batch kombucha with billions of live probiotic cultures",
+            "collection_url": "/collections/humm-kombucha"
+          }
+        },
+        {
+          "type": "brand",
+          "settings": {
+            "name": "LIVE Kombucha",
+            "tagline": "Raw & Unpasteurized",
+            "description": "Raw kombucha preserving all natural enzymes and probiotics",
+            "collection_url": "/collections/live-kombucha"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -5,11 +5,12 @@
   "scripts": {
     "dev": "npx http-server . -p 3000 -o",
     "preview": "npx http-server . -p 3000 -o",
-    "shopify:dev": "shopify theme dev",
-    "shopify:push": "shopify theme push",
-    "shopify:push:live": "shopify theme push --live",
-    "shopify:pull": "shopify theme pull",
-    "shopify:check": "shopify theme check"
+    "shopify:dev": "shopify theme dev --store=kombuchamarket.myshopify.com",
+    "shopify:dev:interactive": "shopify theme dev",
+    "shopify:push": "shopify theme push --store=kombuchamarket.myshopify.com",
+    "shopify:push:live": "shopify theme push --live --store=kombuchamarket.myshopify.com",
+    "shopify:pull": "shopify theme pull --store=kombuchamarket.myshopify.com",
+    "shopify:check": "shopify theme check --store=kombuchamarket.myshopify.com"
   },
   "keywords": [
     "shopify",
