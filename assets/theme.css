@@ -1,5 +1,5 @@
 /* ============================================
-   CULTURE Theme - Luxury Wellness Aesthetic
+   KombuchaMarket Theme - Nashville Kombucha Marketplace
    ============================================ */
 
 /* Reset & Base */
@@ -305,7 +305,7 @@ a:hover {
 
 .footer__content {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: var(--spacing-lg);
   margin-bottom: var(--spacing-lg);
 }
@@ -337,6 +337,67 @@ a:hover {
 .footer__copyright {
   font-size: 0.75rem;
   color: var(--color-text-secondary);
+}
+
+.footer__newsletter {
+  grid-column: span 1;
+}
+
+.footer__newsletter-text {
+  font-size: 0.8125rem;
+  color: var(--color-text-secondary);
+  margin-bottom: var(--spacing-sm);
+}
+
+.footer__newsletter-form {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: var(--spacing-sm);
+}
+
+.footer__newsletter-input {
+  flex: 1;
+  padding: 0.75rem;
+  border: 1px solid var(--color-border);
+  font-size: 0.875rem;
+  font-family: var(--font-body-family);
+  background: var(--color-background);
+  color: var(--color-foreground);
+}
+
+.footer__newsletter-input:focus {
+  outline: none;
+  border-color: var(--color-foreground);
+}
+
+.footer__newsletter-button {
+  padding: 0.75rem 1.5rem;
+  background: var(--color-foreground);
+  color: var(--color-background);
+  border: none;
+  font-size: 0.875rem;
+  font-weight: var(--font-weight-medium);
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.footer__newsletter-button:hover {
+  opacity: 0.8;
+}
+
+.footer__disclaimer {
+  font-size: 0.75rem;
+  color: var(--color-text-secondary);
+  margin-bottom: var(--spacing-xs);
+  font-style: italic;
+}
+
+.footer__newsletter-success {
+  font-size: 0.8125rem;
+  color: var(--color-foreground);
+  padding: var(--spacing-sm);
+  background: #f0f0f0;
+  border: 1px solid var(--color-border);
 }
 
 /* Split Section */
@@ -1082,6 +1143,148 @@ a:hover {
   color: var(--color-text-secondary);
 }
 
+/* Contact Page */
+.contact-page {
+  padding: var(--spacing-xl) 0;
+}
+
+.contact-page__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+}
+
+.contact-page__header {
+  text-align: center;
+  margin-bottom: var(--spacing-xl);
+}
+
+.contact-page__title {
+  font-size: 2.5rem;
+  font-weight: var(--font-weight-normal);
+  margin-bottom: var(--spacing-md);
+}
+
+.contact-page__content {
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.8;
+}
+
+.contact-page__form-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-xl);
+  margin-top: var(--spacing-xl);
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.contact-form__success {
+  padding: var(--spacing-md);
+  background: #f0f0f0;
+  border: 1px solid var(--color-border);
+  color: var(--color-foreground);
+  font-size: 0.875rem;
+}
+
+.contact-form__errors {
+  padding: var(--spacing-md);
+  background: #fff0f0;
+  border: 1px solid #ffcccc;
+  color: #cc0000;
+  font-size: 0.875rem;
+}
+
+.contact-form__errors ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.contact-form__field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.contact-form__label {
+  font-size: 0.875rem;
+  font-weight: var(--font-weight-medium);
+  color: var(--color-foreground);
+}
+
+.contact-form__input,
+.contact-form__textarea {
+  padding: 0.75rem;
+  border: 1px solid var(--color-border);
+  font-size: 0.875rem;
+  font-family: var(--font-body-family);
+  background: var(--color-background);
+  color: var(--color-foreground);
+  width: 100%;
+}
+
+.contact-form__input:focus,
+.contact-form__textarea:focus {
+  outline: none;
+  border-color: var(--color-foreground);
+}
+
+.contact-form__textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.contact-form__submit {
+  padding: 0.75rem 2rem;
+  background: var(--color-foreground);
+  color: var(--color-background);
+  border: none;
+  font-size: 0.875rem;
+  font-weight: var(--font-weight-medium);
+  cursor: pointer;
+  transition: opacity 0.2s;
+  font-family: inherit;
+  align-self: flex-start;
+}
+
+.contact-form__submit:hover {
+  opacity: 0.8;
+}
+
+.contact-page__info {
+  padding: var(--spacing-lg);
+  background: #fafafa;
+  border: 1px solid var(--color-border);
+}
+
+.contact-page__info-title {
+  font-size: 1.25rem;
+  font-weight: var(--font-weight-normal);
+  margin-bottom: var(--spacing-md);
+}
+
+.contact-page__info-text {
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+  line-height: 1.8;
+  margin-bottom: var(--spacing-md);
+}
+
+.contact-page__info-note {
+  font-size: 0.8125rem;
+  color: var(--color-text-secondary);
+  line-height: 1.8;
+  font-style: italic;
+}
+
 /* Animations */
 [data-section] {
   opacity: 0;
@@ -1145,6 +1348,18 @@ a:hover {
   .footer__content {
     grid-template-columns: 1fr;
     gap: var(--spacing-md);
+  }
+
+  .footer__newsletter-form {
+    flex-direction: column;
+  }
+
+  .footer__newsletter-button {
+    width: 100%;
+  }
+
+  .contact-page__form-wrapper {
+    grid-template-columns: 1fr;
   }
 
   .cart-drawer {

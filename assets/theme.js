@@ -1,5 +1,5 @@
 /* ============================================
-   CULTURE Theme - JavaScript
+   KombuchaMarket Theme - JavaScript
    ============================================ */
 
 (function() {

@@ -23,9 +23,30 @@
           <li><a href="/pages/newsletter">Newsletter</a></li>
         </ul>
       </div>
+      <div class="footer__column footer__newsletter">
+        <h3 class="footer__title">Newsletter</h3>
+        <p class="footer__newsletter-text">Stay updated with Nashville's best kombucha finds</p>
+        {% form 'customer', class: 'footer__newsletter-form', id: 'newsletter-form' %}
+          {%- if form.posted_successfully? -%}
+            <p class="footer__newsletter-success">Thanks for subscribing!</p>
+          {%- else -%}
+            <input 
+              type="email" 
+              name="contact[email]" 
+              class="footer__newsletter-input" 
+              placeholder="Enter your email" 
+              required 
+              aria-label="Email address"
+            >
+            <input type="hidden" name="contact[tags]" value="newsletter">
+            <button type="submit" class="footer__newsletter-button">Subscribe</button>
+          {%- endif -%}
+        {% endform %}
+      </div>
     </div>
     <div class="footer__bottom">
-      <p class="footer__copyright">&copy; {{ 'now' | date: '%Y' }} CULTURE. All rights reserved.</p>
+      <p class="footer__disclaimer">KombuchaMarket is a Nashville-based marketplace featuring kombucha products. We are not an official retailer or partner of the brands featured.</p>
+      <p class="footer__copyright">&copy; {{ 'now' | date: '%Y' }} KombuchaMarket. All rights reserved.</p>
     </div>
   </div>
 </footer>

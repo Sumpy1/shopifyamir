@@ -1,0 +1,22 @@
+{
+  "name": "kombuchamarket-theme",
+  "version": "1.0.0",
+  "description": "KombuchaMarket - Nashville Kombucha Marketplace Shopify Theme",
+  "scripts": {
+    "dev": "npx http-server . -p 3000 -o",
+    "preview": "npx http-server . -p 3000 -o",
+    "shopify:dev": "shopify theme dev",
+    "shopify:push": "shopify theme push",
+    "shopify:push:live": "shopify theme push --live",
+    "shopify:pull": "shopify theme pull",
+    "shopify:check": "shopify theme check"
+  },
+  "keywords": [
+    "shopify",
+    "theme",
+    "kombucha",
+    "marketplace"
+  ],
+  "author": "",
+  "license": "MIT"
+}
