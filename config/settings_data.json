@@ -49,6 +49,7 @@
       "asymmetric-grid": {
         "type": "asymmetric-grid",
         "settings": {
+          "image_1": "shopify://shop_images/Gemini_Generated_Image_5rgcrz5rgcrz5rgc.png",
           "link_1": "",
           "image_2": "shopify://shop_images/kambucha-and-cookies-for-santa.jpg",
           "link_2": ""
