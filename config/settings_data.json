@@ -39,7 +39,7 @@
       "hero": {
         "type": "hero",
         "settings": {
-          "image": "shopify://shop_images/Gemini_Generated_Image_984kqu984kqu984k.png",
+          "image": "shopify://shop_images/All_Flavors.webp",
           "title": "Elevate Your Wellness",
           "description": "",
           "button_text": "",
@@ -50,7 +50,7 @@
         "type": "asymmetric-grid",
         "settings": {
           "link_1": "",
-          "image_2": "shopify://shop_images/GettyImages-1400340461.jpg",
+          "image_2": "shopify://shop_images/kambucha-and-cookies-for-santa.jpg",
           "link_2": ""
         }
       },
@@ -61,7 +61,7 @@
           "text": "",
           "link_text": "Learn More",
           "link_url": "",
-          "image": "shopify://shop_images/GettyImages-1400340461.jpg"
+          "image": "shopify://shop_images/image-3.png"
         }
       },
       "footer": {
