@@ -124,6 +124,21 @@
       "product-template": {
         "type": "product-template",
         "settings": {}
+      },
+      "newsletter": {
+        "type": "newsletter",
+        "settings": {
+          "hero_image": "shopify://shop_images/write-notes-from-laptop.jpg",
+          "title": "Kombucha Newsletter",
+          "subtitle": "",
+          "info_text": "",
+          "signup_title": "Get Weekly Kombucha Insights",
+          "signup_description": "Want to get weekly newsletters about kombucha and learn how to make it yourself? Sign up for our newsletter to receive:",
+          "benefit_1": "Weekly kombucha recipes and brewing tips",
+          "benefit_2": "Expert guides on fermentation techniques",
+          "benefit_3": "Spotlights on featured brands and new arrivals",
+          "benefit_4": "Exclusive discounts and special offers"
+        }
       }
     },
     "content_for_index": []
