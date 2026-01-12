@@ -139,6 +139,39 @@
           "benefit_3": "Spotlights on featured brands and new arrivals",
           "benefit_4": "Exclusive discounts and special offers"
         }
+      },
+      "faq": {
+        "type": "faq",
+        "blocks": {
+          "category_GTYyU7": {
+            "type": "category",
+            "settings": {
+              "category_title": "Category",
+              "question_1": "What is kombucha?",
+              "answer_1": "Kombucha is a fermented tea beverage made by adding a symbiotic culture of bacteria and yeast (SCOBY) to sweetened tea. It's naturally probiotic and contains beneficial acids and enzymes.",
+              "question_2": "Are your products organic?",
+              "answer_2": "Many of our products are organic. Look for the organic certification badge on product pages. We work with brands that prioritize organic ingredients whenever possible.",
+              "question_3": "Do you have sugar-free options?",
+              "answer_3": "Yes! We carry several brands that offer zero-sugar or low-sugar kombucha options. Filter by 'Low Sugar' in our shop to find these products.",
+              "question_4": "How long do kombucha products last?",
+              "answer_4": "Unopened kombucha typically lasts 6-12 months when stored in a cool, dark place. Once opened, consume within 7-10 days and keep refrigerated. Check the expiration date on each product.",
+              "question_5": "",
+              "answer_5": ""
+            }
+          }
+        },
+        "block_order": [
+          "category_GTYyU7"
+        ],
+        "settings": {
+          "label": "Help Center",
+          "title": "Frequently Asked Questions",
+          "description": "Find answers to common questions about our products, shipping, returns, and more.",
+          "contact_title": "Still have questions?",
+          "contact_description": "Can't find what you're looking for? We're here to help!",
+          "contact_email": "hello@kombuchamarket.com",
+          "contact_phone": "(615) 555-0123"
+        }
       }
     },
     "content_for_index": []
