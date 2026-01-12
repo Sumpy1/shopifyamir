@@ -8,17 +8,17 @@
       </button>
     </div>
     <div class="cart-drawer__content" data-cart-content>
-      <div class="cart-drawer__empty" data-cart-empty>
+      <div class="cart-drawer__empty" data-cart-empty style="display: none;">
         <p>Your cart is empty</p>
       </div>
       <div class="cart-drawer__items" data-cart-items></div>
     </div>
-    <div class="cart-drawer__footer" data-cart-footer>
+    <div class="cart-drawer__footer" data-cart-footer style="display: none;">
       <div class="cart-drawer__subtotal">
         <span>Subtotal</span>
-        <span data-cart-subtotal>{{ cart.total_price | money }}</span>
+        <span data-cart-subtotal>$0.00</span>
       </div>
-      <a href="{{ routes.cart_url }}" class="cart-drawer__checkout">Checkout</a>
+      <a href="/checkout" class="cart-drawer__checkout">Checkout</a>
     </div>
   </div>
 </div>

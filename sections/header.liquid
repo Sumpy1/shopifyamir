@@ -50,9 +50,22 @@
     </div>
 
     <div class="header__actions">
-      <button type="button" class="header__action-btn" aria-label="Search" data-search-toggle>
-        {% render 'icon-search' %}
-      </button>
+      <div class="header__search-wrapper">
+        <form class="header__search-form" action="{{ routes.search_url }}" method="get" data-search-form>
+          <input 
+            type="search" 
+            name="q" 
+            class="header__search-input" 
+            placeholder="Search products..." 
+            autocomplete="off"
+            aria-label="Search"
+            data-search-input
+          >
+          <button type="submit" class="header__action-btn header__search-btn" aria-label="Search">
+            {% render 'icon-search' %}
+          </button>
+        </form>
+      </div>
       <button type="button" class="header__action-btn" aria-label="Favorites">
         {% render 'icon-heart' %}
       </button>
