@@ -1,4 +1,12 @@
-
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "current": {
     "sections": {
@@ -43,7 +51,6 @@
         "settings": {
           "image_1": "shopify://shop_images/Gemini_Generated_Image_5rgcrz5rgcrz5rgc.png",
           "link_1": "",
-
           "image_2": "shopify://shop_images/kambucha-and-cookies-for-santa.jpg",
           "link_2": "",
           "overlay_text_2": "Want to sell your Kombucha on Kombucha Market?",
@@ -57,7 +64,6 @@
           "text": "Want to sell your Kombucha on Kombucha Market?",
           "button_text": "Contact us",
           "button_link": "/pages/contact"
-
         }
       },
       "editorial": {
@@ -225,7 +231,7 @@
           "mission_label": "Our Mission",
           "mission_text": "\"To connect discerning consumers with exceptional kombucha makers, fostering a community where craft, wellness, and taste converge.\"",
           "values_label": "What We Believe",
-          "values_title": "Our Values",
+          "values_title": "Craft First, Local Roots, Wellness Focused, Community Driven",
           "nashville_label": "Our Home",
           "nashville_title": "Proudly American",
           "nashville_text": "",
