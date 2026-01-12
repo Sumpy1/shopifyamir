@@ -50,6 +50,62 @@
   }
 
   // ============================================
+  // ACCOUNT DROPDOWN (UI Only)
+  // ============================================
+  const accountWrapper = document.querySelector('[data-account-wrapper]');
+  const accountToggle = document.querySelector('[data-account-toggle]');
+  const accountDropdown = document.querySelector('[data-account-dropdown]');
+
+  function closeAccountDropdown() {
+    if (accountDropdown) {
+      accountDropdown.classList.remove('is-open');
+      if (accountWrapper) {
+        accountWrapper.classList.remove('is-open');
+      }
+    }
+  }
+
+  function toggleAccountDropdown() {
+    if (accountDropdown && accountWrapper) {
+      const isOpen = accountDropdown.classList.contains('is-open');
+      
+      // Close other dropdowns (like search)
+      const searchWrapper = document.querySelector('[data-search-wrapper]');
+      if (searchWrapper) {
+        searchWrapper.classList.remove('is-expanded');
+      }
+      
+      if (isOpen) {
+        closeAccountDropdown();
+      } else {
+        accountDropdown.classList.add('is-open');
+        accountWrapper.classList.add('is-open');
+      }
+    }
+  }
+
+  if (accountToggle && accountDropdown) {
+    accountToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      toggleAccountDropdown();
+    });
+  }
+
+  // Close dropdown when clicking outside
+  document.addEventListener('click', (e) => {
+    if (accountWrapper && !accountWrapper.contains(e.target)) {
+      closeAccountDropdown();
+    }
+  });
+
+  // Close dropdown on Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && accountDropdown && accountDropdown.classList.contains('is-open')) {
+      closeAccountDropdown();
+    }
+  });
+
+  // ============================================
   // CART DRAWER (UI Display Only)
   // ============================================
   // NOTE: Cart drawer displays cart data from Liquid.
@@ -535,5 +591,72 @@
     document.addEventListener('DOMContentLoaded', initCartCount);
   } else {
     initCartCount();
+  }
+
+  // ============================================
+  // EMAIL CAPTURE MODAL (UI Only)
+  // ============================================
+  const emailModal = document.querySelector('[data-email-modal]');
+  const emailModalClose = document.querySelector('[data-email-modal-close]');
+  const emailModalOverlay = document.querySelector('[data-email-modal-overlay]');
+  const EMAIL_MODAL_STORAGE_KEY = 'email-modal-closed';
+
+  function openEmailModal() {
+    if (emailModal) {
+      emailModal.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+    }
+  }
+
+  function closeEmailModal() {
+    if (emailModal) {
+      emailModal.classList.remove('is-open');
+      document.body.style.overflow = '';
+      // Store that modal was closed in localStorage
+      localStorage.setItem(EMAIL_MODAL_STORAGE_KEY, 'true');
+    }
+  }
+
+  function initEmailModal() {
+    if (!emailModal) return;
+
+    // Check if modal was previously closed
+    if (localStorage.getItem(EMAIL_MODAL_STORAGE_KEY) === 'true') {
+      return;
+    }
+
+    // Get delay from data attribute (in seconds, convert to milliseconds)
+    const delay = parseInt(emailModal.getAttribute('data-modal-delay') || '3', 10) * 1000;
+
+    // Show modal after delay
+    setTimeout(() => {
+      // Double check localStorage in case user closed it during delay
+      if (localStorage.getItem(EMAIL_MODAL_STORAGE_KEY) !== 'true') {
+        openEmailModal();
+      }
+    }, delay);
+  }
+
+  // Close modal handlers
+  if (emailModalClose) {
+    emailModalClose.addEventListener('click', closeEmailModal);
+  }
+
+  if (emailModalOverlay) {
+    emailModalOverlay.addEventListener('click', closeEmailModal);
+  }
+
+  // Close modal on Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && emailModal && emailModal.classList.contains('is-open')) {
+      closeEmailModal();
+    }
+  });
+
+  // Initialize modal on page load
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initEmailModal);
+  } else {
+    initEmailModal();
   }
 })();

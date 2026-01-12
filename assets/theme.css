@@ -510,6 +510,181 @@ a:hover {
   font-weight: var(--font-weight-medium);
 }
 
+/* Account Dropdown */
+.header__account-wrapper {
+  position: relative;
+}
+
+.header__account-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text);
+  transition: opacity var(--transition-base);
+}
+
+.header__account-btn:hover {
+  opacity: 0.7;
+}
+
+.header__account-dropdown {
+  position: absolute;
+  top: calc(100% + var(--spacing-sm));
+  right: 0;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  min-width: 320px;
+  max-width: 400px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all var(--transition-base);
+  pointer-events: none;
+  z-index: 1000;
+}
+
+.header__account-wrapper.is-open .header__account-dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  pointer-events: all;
+}
+
+.header__account-dropdown-content {
+  padding: var(--spacing-md);
+}
+
+/* Account Title (for logged out state) */
+.header__account-title {
+  font-size: 1.5rem;
+  font-weight: var(--font-weight-normal);
+  font-family: serif;
+  margin-bottom: var(--spacing-md);
+  color: var(--color-text);
+}
+
+/* Welcome Section (for logged in state) */
+.header__account-welcome {
+  padding-bottom: var(--spacing-md);
+  margin-bottom: var(--spacing-md);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.header__account-greeting {
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+  margin-bottom: 0.25rem;
+}
+
+.header__account-name {
+  font-size: 1rem;
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text);
+}
+
+/* Sign In Buttons */
+.header__account-signin {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-md);
+}
+
+.header__account-signin-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  font-size: 0.875rem;
+  font-weight: var(--font-weight-medium);
+  text-align: center;
+  border-radius: 4px;
+  transition: opacity var(--transition-base), transform var(--transition-base);
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+.header__account-signin-btn--primary {
+  background: #7c3aed;
+  color: #ffffff;
+}
+
+.header__account-signin-btn--primary:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.header__account-signin-btn--secondary {
+  background: var(--color-text);
+  color: #ffffff;
+}
+
+.header__account-signin-btn--secondary:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+/* Account Links */
+.header__account-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border-top: 1px solid var(--color-border);
+  padding-top: var(--spacing-sm);
+}
+
+.header__account-link {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-sm) var(--spacing-md);
+  font-size: 0.875rem;
+  color: var(--color-text);
+  text-decoration: none;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  background: var(--color-bg);
+  transition: background var(--transition-base), border-color var(--transition-base);
+  margin-bottom: var(--spacing-xs);
+}
+
+.header__account-link:last-child {
+  margin-bottom: 0;
+}
+
+.header__account-link:hover {
+  background: rgba(0, 0, 0, 0.02);
+  border-color: var(--color-text);
+}
+
+.header__account-link-icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.header__account-link--logout {
+  color: var(--color-text-secondary);
+  border: none;
+  background: transparent;
+  justify-content: center;
+  padding: var(--spacing-sm);
+  margin-top: var(--spacing-xs);
+}
+
+.header__account-link--logout:hover {
+  background: rgba(0, 0, 0, 0.05);
+  color: var(--color-text);
+}
+
 .header__mobile-menu-btn {
   display: none;
   flex-direction: column;
@@ -3339,6 +3514,782 @@ a:hover {
   color: var(--color-foreground);
 }
 
+/* ============================================
+   Wellness Page Styles
+   ============================================ */
+
+/* Wellness Hero */
+.wellness-hero {
+  position: relative;
+  height: 60vh;
+  min-height: 500px;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+}
+
+@media (min-width: 1024px) {
+  .wellness-hero {
+    height: 70vh;
+  }
+}
+
+.wellness-hero__image-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.wellness-hero__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.wellness-hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.2) 50%, transparent 100%);
+}
+
+.wellness-hero__content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  padding: var(--spacing-xl);
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.wellness-hero__label {
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.8);
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-weight: var(--font-weight-medium);
+  display: block;
+  margin-bottom: var(--spacing-sm);
+}
+
+.wellness-hero__title {
+  font-size: 2.5rem;
+  font-weight: var(--font-weight-normal);
+  color: #ffffff;
+  line-height: 1.2;
+  max-width: 800px;
+  margin-bottom: var(--spacing-sm);
+}
+
+@media (min-width: 768px) {
+  .wellness-hero__title {
+    font-size: 3rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .wellness-hero__title {
+    font-size: 3.75rem;
+  }
+}
+
+.wellness-hero__subtitle {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.6;
+  max-width: 600px;
+  margin-top: var(--spacing-sm);
+}
+
+/* Wellness Blog Listing */
+.wellness-blog-listing {
+  padding: var(--spacing-xl) 0;
+}
+
+.wellness-blog-listing__inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+}
+
+.wellness-blog-listing__header {
+  margin-bottom: var(--spacing-lg);
+  text-align: center;
+}
+
+.wellness-blog-listing__title {
+  font-size: 2.5rem;
+  font-weight: var(--font-weight-normal);
+  margin-bottom: var(--spacing-sm);
+}
+
+@media (min-width: 768px) {
+  .wellness-blog-listing__title {
+    font-size: 3rem;
+  }
+}
+
+.wellness-blog-listing__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
+}
+
+@media (min-width: 768px) {
+  .wellness-blog-listing__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .wellness-blog-listing__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.wellness-blog-listing__footer {
+  text-align: center;
+  margin-top: var(--spacing-lg);
+}
+
+.wellness-blog-listing__view-all {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  font-size: 0.875rem;
+  font-weight: var(--font-weight-medium);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-text);
+  transition: opacity var(--transition-base);
+}
+
+.wellness-blog-listing__view-all:hover {
+  opacity: 0.7;
+}
+
+.wellness-blog-listing__arrow {
+  width: 16px;
+  height: 16px;
+}
+
+.wellness-blog-listing__empty {
+  text-align: center;
+  padding: var(--spacing-xl);
+  color: var(--color-text-secondary);
+}
+
+/* Wellness Blog Card */
+.wellness-blog-card {
+  display: flex;
+  flex-direction: column;
+  transition: transform var(--transition-base);
+}
+
+.wellness-blog-card:hover {
+  transform: translateY(-4px);
+}
+
+.wellness-blog-card__link {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  color: inherit;
+}
+
+.wellness-blog-card__image-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+  margin-bottom: var(--spacing-sm);
+  border-radius: 4px;
+}
+
+.wellness-blog-card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-base);
+}
+
+.wellness-blog-card:hover .wellness-blog-card__image {
+  transform: scale(1.05);
+}
+
+.wellness-blog-card__placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.05);
+  font-size: 3rem;
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-secondary);
+}
+
+.wellness-blog-card__tag {
+  position: absolute;
+  top: var(--spacing-xs);
+  right: var(--spacing-xs);
+  padding: 0.25rem 0.75rem;
+  background: rgba(255, 255, 255, 0.95);
+  font-size: 0.75rem;
+  font-weight: var(--font-weight-medium);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-radius: 2px;
+}
+
+.wellness-blog-card__content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.wellness-blog-card__date {
+  font-size: 0.75rem;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: var(--spacing-xs);
+}
+
+.wellness-blog-card__title {
+  font-size: 1.25rem;
+  font-weight: var(--font-weight-normal);
+  line-height: 1.3;
+  margin-bottom: var(--spacing-xs);
+}
+
+@media (min-width: 768px) {
+  .wellness-blog-card__title {
+    font-size: 1.5rem;
+  }
+}
+
+.wellness-blog-card__excerpt {
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+  margin-bottom: var(--spacing-sm);
+  flex: 1;
+}
+
+.wellness-blog-card__read-more {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  font-size: 0.875rem;
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text);
+  margin-top: auto;
+  transition: gap var(--transition-base);
+}
+
+.wellness-blog-card:hover .wellness-blog-card__read-more {
+  gap: var(--spacing-sm);
+}
+
+.wellness-blog-card__arrow {
+  width: 16px;
+  height: 16px;
+}
+
+/* Wellness Featured Blogs */
+.wellness-featured-blogs {
+  padding: var(--spacing-xl) 0;
+  background: rgba(0, 0, 0, 0.02);
+}
+
+.wellness-featured-blogs__inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+}
+
+.wellness-featured-blogs__header {
+  text-align: center;
+  margin-bottom: var(--spacing-lg);
+}
+
+.wellness-featured-blogs__title {
+  font-size: 2.5rem;
+  font-weight: var(--font-weight-normal);
+  margin-bottom: var(--spacing-sm);
+}
+
+@media (min-width: 768px) {
+  .wellness-featured-blogs__title {
+    font-size: 3rem;
+  }
+}
+
+.wellness-featured-blogs__subtitle {
+  font-size: 1rem;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.wellness-featured-blogs__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-lg);
+}
+
+@media (min-width: 768px) {
+  .wellness-featured-blogs__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .wellness-featured-blogs__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Wellness Featured Card */
+.wellness-featured-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--color-bg);
+  border-radius: 4px;
+  overflow: hidden;
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.wellness-featured-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+.wellness-featured-card__link {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  color: inherit;
+}
+
+.wellness-featured-card__image-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+}
+
+.wellness-featured-card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-base);
+}
+
+.wellness-featured-card:hover .wellness-featured-card__image {
+  transform: scale(1.05);
+}
+
+.wellness-featured-card__placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.05);
+  font-size: 3rem;
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-secondary);
+}
+
+.wellness-featured-card__tag {
+  position: absolute;
+  top: var(--spacing-xs);
+  right: var(--spacing-xs);
+  padding: 0.25rem 0.75rem;
+  background: rgba(255, 255, 255, 0.95);
+  font-size: 0.75rem;
+  font-weight: var(--font-weight-medium);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-radius: 2px;
+}
+
+.wellness-featured-card__content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: var(--spacing-md);
+}
+
+.wellness-featured-card__date {
+  font-size: 0.75rem;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: var(--spacing-xs);
+}
+
+.wellness-featured-card__title {
+  font-size: 1.5rem;
+  font-weight: var(--font-weight-normal);
+  line-height: 1.3;
+  margin-bottom: var(--spacing-sm);
+}
+
+@media (min-width: 768px) {
+  .wellness-featured-card__title {
+    font-size: 1.75rem;
+  }
+}
+
+.wellness-featured-card__excerpt {
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+  margin-bottom: var(--spacing-sm);
+  flex: 1;
+}
+
+.wellness-featured-card__read-more {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  font-size: 0.875rem;
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text);
+  margin-top: auto;
+  transition: gap var(--transition-base);
+}
+
+.wellness-featured-card:hover .wellness-featured-card__read-more {
+  gap: var(--spacing-sm);
+}
+
+.wellness-featured-card__arrow {
+  width: 16px;
+  height: 16px;
+}
+
+/* ============================================
+   Email Capture Modal Styles
+   ============================================ */
+
+.email-capture-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--transition-base), visibility var(--transition-base);
+  pointer-events: none;
+}
+
+.email-capture-modal.is-open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.email-capture-modal__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+  cursor: pointer;
+}
+
+.email-capture-modal__container {
+  position: relative;
+  z-index: 1;
+  width: 90%;
+  max-width: 900px;
+  max-height: 90vh;
+  background: var(--color-bg);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  transform: scale(0.95) translateY(20px);
+  transition: transform var(--transition-base);
+  display: flex;
+  flex-direction: column;
+}
+
+.email-capture-modal.is-open .email-capture-modal__container {
+  transform: scale(1) translateY(0);
+}
+
+.email-capture-modal__close {
+  position: absolute;
+  top: var(--spacing-sm);
+  right: var(--spacing-sm);
+  z-index: 10;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.9);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background var(--transition-base), transform var(--transition-base);
+  color: var(--color-text);
+}
+
+.email-capture-modal__close:hover {
+  background: rgba(255, 255, 255, 1);
+  transform: rotate(90deg);
+}
+
+.email-capture-modal__close svg {
+  width: 20px;
+  height: 20px;
+}
+
+.email-capture-modal__content {
+  display: grid;
+  grid-template-columns: 1fr;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+@media (min-width: 768px) {
+  .email-capture-modal__content {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Image Section */
+.email-capture-modal__image-section {
+  position: relative;
+  width: 100%;
+  min-height: 300px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+@media (min-width: 768px) {
+  .email-capture-modal__image-section {
+    min-height: 500px;
+  }
+}
+
+.email-capture-modal__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.email-capture-modal__image-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-lg);
+  color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+}
+
+.email-capture-modal__image-placeholder svg {
+  margin-bottom: var(--spacing-sm);
+  opacity: 0.7;
+}
+
+.email-capture-modal__image-placeholder p {
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* Form Section */
+.email-capture-modal__form-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-xl);
+  overflow-y: auto;
+}
+
+.email-capture-modal__form-content {
+  width: 100%;
+  max-width: 400px;
+}
+
+.email-capture-modal__title {
+  font-size: 2rem;
+  font-weight: var(--font-weight-normal);
+  line-height: 1.2;
+  margin-bottom: var(--spacing-sm);
+  color: var(--color-text);
+}
+
+@media (min-width: 768px) {
+  .email-capture-modal__title {
+    font-size: 2.5rem;
+  }
+}
+
+.email-capture-modal__description {
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+  margin-bottom: var(--spacing-lg);
+}
+
+.email-capture-modal__form {
+  width: 100%;
+}
+
+.email-capture-modal__form-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-sm);
+}
+
+.email-capture-modal__input {
+  width: 100%;
+  padding: 1rem;
+  font-size: 0.875rem;
+  font-family: var(--font-body);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  background: var(--color-bg);
+  color: var(--color-text);
+  transition: border-color var(--transition-base);
+}
+
+.email-capture-modal__input:focus {
+  outline: none;
+  border-color: var(--color-text);
+}
+
+.email-capture-modal__input::placeholder {
+  color: var(--color-text-secondary);
+}
+
+.email-capture-modal__submit {
+  width: 100%;
+  padding: 1rem;
+  font-size: 0.875rem;
+  font-weight: var(--font-weight-medium);
+  font-family: var(--font-body);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #ffffff;
+  background: var(--color-text);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: opacity var(--transition-base), transform var(--transition-base);
+}
+
+.email-capture-modal__submit:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.email-capture-modal__submit:active {
+  transform: translateY(0);
+}
+
+.email-capture-modal__errors {
+  padding: var(--spacing-sm);
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  border-radius: 4px;
+  margin-top: var(--spacing-sm);
+}
+
+.email-capture-modal__errors p {
+  font-size: 0.8125rem;
+  color: #dc2626;
+  margin: 0;
+}
+
+/* Success State */
+.email-capture-modal__success {
+  text-align: center;
+  padding: var(--spacing-lg) 0;
+}
+
+.email-capture-modal__success-icon {
+  margin: 0 auto var(--spacing-md);
+  display: block;
+}
+
+.email-capture-modal__success-title {
+  font-size: 1.75rem;
+  font-weight: var(--font-weight-normal);
+  margin-bottom: var(--spacing-sm);
+  color: var(--color-text);
+}
+
+.email-capture-modal__success-text {
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+  margin-bottom: var(--spacing-lg);
+}
+
+.email-capture-modal__close-btn {
+  padding: 0.75rem 2rem;
+  font-size: 0.875rem;
+  font-weight: var(--font-weight-medium);
+  font-family: var(--font-body);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-text);
+  background: transparent;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background var(--transition-base), border-color var(--transition-base);
+}
+
+.email-capture-modal__close-btn:hover {
+  background: rgba(0, 0, 0, 0.05);
+  border-color: var(--color-text);
+}
+
+/* Mobile Responsive */
+@media (max-width: 767px) {
+  .email-capture-modal__container {
+    width: 95%;
+    max-height: 95vh;
+  }
+
+  .email-capture-modal__form-section {
+    padding: var(--spacing-md);
+  }
+
+  .email-capture-modal__title {
+    font-size: 1.75rem;
+  }
+
+  .email-capture-modal__image-section {
+    min-height: 250px;
+  }
+}
+
 /* Animations */
 [data-section] {
   opacity: 0;
@@ -3376,6 +4327,17 @@ a:hover {
   
   .header__predictive-search {
     max-height: 400px;
+  }
+
+  .header__account-dropdown {
+    right: auto;
+    left: 50%;
+    transform: translateX(-50%) translateY(-10px);
+    min-width: 280px;
+  }
+
+  .header__account-wrapper.is-open .header__account-dropdown {
+    transform: translateX(-50%) translateY(0);
   }
 
   .split-section__inner {
@@ -3469,6 +4431,28 @@ a:hover {
   .shipping-section__title,
   .returns-section__title {
     font-size: 1.75rem;
+  }
+
+  .wellness-hero {
+    height: 50vh;
+    min-height: 400px;
+  }
+
+  .wellness-hero__title {
+    font-size: 2rem;
+  }
+
+  .wellness-blog-listing__title,
+  .wellness-featured-blogs__title {
+    font-size: 2rem;
+  }
+
+  .wellness-blog-listing__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .wellness-featured-blogs__grid {
+    grid-template-columns: 1fr;
   }
 
   .cart-drawer {

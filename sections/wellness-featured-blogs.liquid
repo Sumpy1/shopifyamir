@@ -1,0 +1,210 @@
+{%- liquid
+  assign title = section.settings.title
+  assign subtitle = section.settings.subtitle
+-%}
+
+<section class="wellness-featured-blogs">
+  <div class="wellness-featured-blogs__inner">
+    {%- if title != blank -%}
+      <div class="wellness-featured-blogs__header">
+        <h2 class="wellness-featured-blogs__title">{{ title }}</h2>
+        {%- if subtitle != blank -%}
+          <p class="wellness-featured-blogs__subtitle">{{ subtitle }}</p>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+    <div class="wellness-featured-blogs__grid">
+      {%- for block in section.blocks -%}
+        {%- assign article_handle = block.settings.article -%}
+        {%- assign article = articles[article_handle] -%}
+        
+        {%- if article != blank -%}
+          <article class="wellness-featured-card" {{ block.shopify_attributes }}>
+            <a href="{{ article.url }}" class="wellness-featured-card__link">
+              <div class="wellness-featured-card__image-wrapper">
+                {%- if article.image != blank -%}
+                  <img
+                    src="{{ article.image | image_url: width: 800 }}"
+                    alt="{{ article.image.alt | default: article.title }}"
+                    class="wellness-featured-card__image"
+                    width="800"
+                    height="600"
+                    loading="lazy"
+                  >
+                {%- else -%}
+                  <div class="wellness-featured-card__placeholder">
+                    {{ article.title | first }}
+                  </div>
+                {%- endif -%}
+                {%- if article.tags.size > 0 -%}
+                  <span class="wellness-featured-card__tag">{{ article.tags.first }}</span>
+                {%- endif -%}
+              </div>
+              <div class="wellness-featured-card__content">
+                <time class="wellness-featured-card__date" datetime="{{ article.published_at | date: '%Y-%m-%d' }}">
+                  {{ article.published_at | date: '%B %d, %Y' }}
+                </time>
+                <h3 class="wellness-featured-card__title">{{ article.title }}</h3>
+                {%- if article.excerpt != blank -%}
+                  <p class="wellness-featured-card__excerpt">{{ article.excerpt | strip_html | truncatewords: 30 }}</p>
+                {%- elsif article.content != blank -%}
+                  <p class="wellness-featured-card__excerpt">{{ article.content | strip_html | truncatewords: 30 }}</p>
+                {%- endif -%}
+                <span class="wellness-featured-card__read-more">
+                  Read Article
+                  <svg class="wellness-featured-card__arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <path d="M6 12l4-4-4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+              </div>
+            </a>
+          </article>
+        {%- elsif block.settings.custom_title != blank -%}
+          <article class="wellness-featured-card wellness-featured-card--custom" {{ block.shopify_attributes }}>
+            {%- if block.settings.custom_image != blank -%}
+              <div class="wellness-featured-card__image-wrapper">
+                <img
+                  src="{{ block.settings.custom_image | image_url: width: 800 }}"
+                  alt="{{ block.settings.custom_title }}"
+                  class="wellness-featured-card__image"
+                  width="800"
+                  height="600"
+                  loading="lazy"
+                >
+                {%- if block.settings.custom_tag != blank -%}
+                  <span class="wellness-featured-card__tag">{{ block.settings.custom_tag }}</span>
+                {%- endif -%}
+              </div>
+            {%- endif -%}
+            <div class="wellness-featured-card__content">
+              {%- if block.settings.custom_date != blank -%}
+                <time class="wellness-featured-card__date">{{ block.settings.custom_date }}</time>
+              {%- endif -%}
+              <h3 class="wellness-featured-card__title">{{ block.settings.custom_title }}</h3>
+              {%- if block.settings.custom_excerpt != blank -%}
+                <p class="wellness-featured-card__excerpt">{{ block.settings.custom_excerpt }}</p>
+              {%- endif -%}
+              {%- if block.settings.custom_url != blank -%}
+                <a href="{{ block.settings.custom_url }}" class="wellness-featured-card__read-more">
+                  Read Article
+                  <svg class="wellness-featured-card__arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <path d="M6 12l4-4-4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </a>
+              {%- endif -%}
+            </div>
+          </article>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Wellness Featured Blogs",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "Featured Articles"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Section Subtitle",
+      "default": "Handpicked kombucha wellness stories and health insights"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "article",
+      "name": "Blog Article",
+      "settings": [
+        {
+          "type": "article",
+          "id": "article",
+          "label": "Article",
+          "info": "Select a blog article to feature"
+        }
+      ]
+    },
+    {
+      "type": "custom",
+      "name": "Custom Article",
+      "settings": [
+        {
+          "type": "text",
+          "id": "custom_title",
+          "label": "Title",
+          "default": "Article Title"
+        },
+        {
+          "type": "textarea",
+          "id": "custom_excerpt",
+          "label": "Excerpt",
+          "default": "Article excerpt or description"
+        },
+        {
+          "type": "image_picker",
+          "id": "custom_image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "custom_tag",
+          "label": "Tag",
+          "default": "Wellness"
+        },
+        {
+          "type": "text",
+          "id": "custom_date",
+          "label": "Date",
+          "default": "January 1, 2024"
+        },
+        {
+          "type": "url",
+          "id": "custom_url",
+          "label": "Link URL"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Wellness Featured Blogs",
+      "blocks": [
+        {
+          "type": "custom",
+          "settings": {
+            "custom_title": "The Health Benefits of Kombucha",
+            "custom_excerpt": "Discover how kombucha can support your gut health and overall wellness.",
+            "custom_tag": "Health",
+            "custom_date": "January 15, 2024"
+          }
+        },
+        {
+          "type": "custom",
+          "settings": {
+            "custom_title": "Brewing Kombucha at Home",
+            "custom_excerpt": "Learn the art of brewing your own kombucha with our step-by-step guide.",
+            "custom_tag": "Brewing",
+            "custom_date": "January 10, 2024"
+          }
+        },
+        {
+          "type": "custom",
+          "settings": {
+            "custom_title": "Kombucha Flavors Explained",
+            "custom_excerpt": "Explore the wide variety of kombucha flavors and find your perfect match.",
+            "custom_tag": "Flavors",
+            "custom_date": "January 5, 2024"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

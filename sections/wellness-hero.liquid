@@ -1,0 +1,71 @@
+{%- liquid
+  assign title = section.settings.title
+  assign subtitle = section.settings.subtitle
+  assign background_image = section.settings.background_image
+-%}
+
+<section class="wellness-hero">
+  {%- if background_image != blank -%}
+    <div class="wellness-hero__image-wrapper">
+      <img
+        src="{{ background_image | image_url: width: 2000 }}"
+        alt="{{ background_image.alt | default: 'Wellness' }}"
+        class="wellness-hero__image"
+        width="2000"
+        height="800"
+        loading="eager"
+      >
+      <div class="wellness-hero__overlay"></div>
+    </div>
+  {%- endif -%}
+  <div class="wellness-hero__content">
+    <span class="wellness-hero__label">{{ section.settings.label | default: 'Wellness' }}</span>
+    <h1 class="wellness-hero__title">
+      {%- if title != blank -%}
+        {{ title | replace: '\n', '<br>' }}
+      {%- else -%}
+        Kombucha Wellness<br>& Health Insights
+      {%- endif -%}
+    </h1>
+    {%- if subtitle != blank -%}
+      <p class="wellness-hero__subtitle">{{ subtitle }}</p>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Wellness Hero",
+  "settings": [
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Label",
+      "default": "Wellness"
+    },
+    {
+      "type": "textarea",
+      "id": "title",
+      "label": "Title",
+      "default": "Kombucha Wellness\n& Health Insights",
+      "info": "Use \\n for line breaks"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Discover the health benefits, brewing tips, and wellness stories from the kombucha community"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background Image"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Wellness Hero"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,155 @@
+{%- liquid
+  assign modal_image = section.settings.modal_image
+  assign modal_title = section.settings.modal_title
+  assign modal_description = section.settings.modal_description
+  assign modal_delay = section.settings.modal_delay | default: 3000
+  assign modal_enabled = section.settings.modal_enabled
+-%}
+
+{%- if modal_enabled -%}
+<div class="email-capture-modal" data-email-modal data-modal-delay="{{ modal_delay }}">
+  <div class="email-capture-modal__overlay" data-email-modal-overlay></div>
+  <div class="email-capture-modal__container">
+    <button class="email-capture-modal__close" data-email-modal-close aria-label="Close modal">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+    
+    <div class="email-capture-modal__content">
+      <!-- Image Section -->
+      <div class="email-capture-modal__image-section">
+        {%- if modal_image != blank -%}
+          <img
+            src="{{ modal_image | image_url: width: 600 }}"
+            alt="{{ modal_image.alt | default: 'Free Kombucha Recipe' }}"
+            class="email-capture-modal__image"
+            width="600"
+            height="600"
+            loading="eager"
+          >
+        {%- else -%}
+          <div class="email-capture-modal__image-placeholder">
+            <svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="120" height="120" fill="#f5f5f5"/>
+              <path d="M30 40h60M30 60h60M30 80h40" stroke="#999" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <p>Kombucha Recipe</p>
+          </div>
+        {%- endif -%}
+      </div>
+
+      <!-- Form Section -->
+      <div class="email-capture-modal__form-section">
+        <div class="email-capture-modal__form-content">
+          {%- if modal_title != blank -%}
+            <h2 class="email-capture-modal__title">{{ modal_title }}</h2>
+          {%- else -%}
+            <h2 class="email-capture-modal__title">Get Your Free Kombucha Recipe!</h2>
+          {%- endif -%}
+
+          {%- if modal_description != blank -%}
+            <p class="email-capture-modal__description">{{ modal_description }}</p>
+          {%- else -%}
+            <p class="email-capture-modal__description">Sign up to receive a free recipe for crafting delicious kombucha at home. Learn the art of fermentation and create your own probiotic-rich beverages.</p>
+          {%- endif -%}
+
+          {% form 'customer', class: 'email-capture-modal__form', id: 'email-capture-form' %}
+            {%- if form.posted_successfully? -%}
+              <div class="email-capture-modal__success">
+                <svg class="email-capture-modal__success-icon" width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="24" cy="24" r="24" fill="#10b981"/>
+                  <path d="M16 24l6 6 12-12" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <h3 class="email-capture-modal__success-title">Thank You!</h3>
+                <p class="email-capture-modal__success-text">Check your email for your free kombucha recipe.</p>
+                <button type="button" class="email-capture-modal__close-btn" data-email-modal-close>Close</button>
+              </div>
+            {%- else -%}
+              <div class="email-capture-modal__form-group">
+                <input 
+                  type="email" 
+                  name="contact[email]" 
+                  class="email-capture-modal__input" 
+                  placeholder="Enter your email address" 
+                  required 
+                  aria-label="Email address"
+                  autocomplete="email"
+                >
+                <input type="hidden" name="contact[tags]" value="newsletter,recipe">
+                <button type="submit" class="email-capture-modal__submit">
+                  Get Free Recipe
+                </button>
+              </div>
+              {%- if form.errors -%}
+                <div class="email-capture-modal__errors">
+                  {%- for field in form.errors -%}
+                    <p>{{ form.errors[field] }}</p>
+                  {%- endfor -%}
+                </div>
+              {%- endif -%}
+            {%- endif -%}
+          {% endform %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Email Capture Modal",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "modal_enabled",
+      "label": "Enable Modal",
+      "default": true,
+      "info": "Enable or disable the email capture modal popup"
+    },
+    {
+      "type": "header",
+      "content": "Modal Content"
+    },
+    {
+      "type": "image_picker",
+      "id": "modal_image",
+      "label": "Modal Image",
+      "info": "Image displayed in the modal (recommended: square image, 600x600px)"
+    },
+    {
+      "type": "text",
+      "id": "modal_title",
+      "label": "Modal Title",
+      "default": "Get Your Free Kombucha Recipe!"
+    },
+    {
+      "type": "textarea",
+      "id": "modal_description",
+      "label": "Modal Description",
+      "default": "Sign up to receive a free recipe for crafting delicious kombucha at home. Learn the art of fermentation and create your own probiotic-rich beverages."
+    },
+    {
+      "type": "header",
+      "content": "Modal Settings"
+    },
+    {
+      "type": "range",
+      "id": "modal_delay",
+      "label": "Show Modal After (seconds)",
+      "min": 1,
+      "max": 10,
+      "step": 1,
+      "default": 3,
+      "unit": "sec",
+      "info": "Delay before showing the modal (in seconds)"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Email Capture Modal"
+    }
+  ]
+}
+{% endschema %}

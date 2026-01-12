@@ -1,0 +1,119 @@
+{%- liquid
+  assign blog_handle = section.settings.blog
+  assign blog = blogs[blog_handle]
+  assign title = section.settings.title
+  assign show_excerpt = section.settings.show_excerpt
+  assign posts_per_page = section.settings.posts_per_page | default: 6
+-%}
+
+<section class="wellness-blog-listing">
+  <div class="wellness-blog-listing__inner">
+    {%- if title != blank -%}
+      <div class="wellness-blog-listing__header">
+        <h2 class="wellness-blog-listing__title">{{ title }}</h2>
+      </div>
+    {%- endif -%}
+
+    {%- if blog != blank and blog.articles.size > 0 -%}
+      <div class="wellness-blog-listing__grid">
+        {%- for article in blog.articles limit: posts_per_page -%}
+          <article class="wellness-blog-card" {{ block.shopify_attributes }}>
+            <a href="{{ article.url }}" class="wellness-blog-card__link">
+              <div class="wellness-blog-card__image-wrapper">
+                {%- if article.image != blank -%}
+                  <img
+                    src="{{ article.image | image_url: width: 600 }}"
+                    alt="{{ article.image.alt | default: article.title }}"
+                    class="wellness-blog-card__image"
+                    width="600"
+                    height="400"
+                    loading="lazy"
+                  >
+                {%- else -%}
+                  <div class="wellness-blog-card__placeholder">
+                    {{ article.title | first }}
+                  </div>
+                {%- endif -%}
+                {%- if article.tags.size > 0 -%}
+                  <span class="wellness-blog-card__tag">{{ article.tags.first }}</span>
+                {%- endif -%}
+              </div>
+              <div class="wellness-blog-card__content">
+                <time class="wellness-blog-card__date" datetime="{{ article.published_at | date: '%Y-%m-%d' }}">
+                  {{ article.published_at | date: '%B %d, %Y' }}
+                </time>
+                <h3 class="wellness-blog-card__title">{{ article.title }}</h3>
+                {%- if show_excerpt and article.excerpt != blank -%}
+                  <p class="wellness-blog-card__excerpt">{{ article.excerpt | strip_html | truncatewords: 25 }}</p>
+                {%- elsif show_excerpt and article.content != blank -%}
+                  <p class="wellness-blog-card__excerpt">{{ article.content | strip_html | truncatewords: 25 }}</p>
+                {%- endif -%}
+                <span class="wellness-blog-card__read-more">
+                  Read More
+                  <svg class="wellness-blog-card__arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <path d="M6 12l4-4-4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+              </div>
+            </a>
+          </article>
+        {%- endfor -%}
+      </div>
+
+      {%- if blog.articles.size > posts_per_page -%}
+        <div class="wellness-blog-listing__footer">
+          <a href="{{ blog.url }}" class="wellness-blog-listing__view-all">
+            View All Articles
+            <svg class="wellness-blog-listing__arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M6 12l4-4-4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+      {%- endif -%}
+    {%- else -%}
+      <div class="wellness-blog-listing__empty">
+        <p>No blog articles found. Please select a blog in the theme customizer.</p>
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Wellness Blog Listing",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "Latest Kombucha Articles"
+    },
+    {
+      "type": "blog",
+      "id": "blog",
+      "label": "Blog",
+      "info": "Select the blog to display articles from"
+    },
+    {
+      "type": "range",
+      "id": "posts_per_page",
+      "label": "Posts per page",
+      "min": 3,
+      "max": 12,
+      "step": 3,
+      "default": 6
+    },
+    {
+      "type": "checkbox",
+      "id": "show_excerpt",
+      "label": "Show excerpt",
+      "default": true
+    }
+  ],
+  "presets": [
+    {
+      "name": "Wellness Blog Listing"
+    }
+  ]
+}
+{% endschema %}

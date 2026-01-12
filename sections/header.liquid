@@ -70,9 +70,68 @@
         </form>
         <div class="header__predictive-search" data-predictive-search></div>
       </div>
-      <button type="button" class="header__action-btn" aria-label="Favorites">
-        {% render 'icon-heart' %}
-      </button>
+      <div class="header__account-wrapper" data-account-wrapper>
+        <button type="button" class="header__action-btn header__account-btn" aria-label="Account" data-account-toggle>
+          {% render 'icon-profile' %}
+        </button>
+        <div class="header__account-dropdown" data-account-dropdown>
+          {%- if customer -%}
+            <!-- Logged in state -->
+            <div class="header__account-dropdown-content">
+              <div class="header__account-welcome">
+                <p class="header__account-greeting">Welcome back,</p>
+                <p class="header__account-name">{{ customer.first_name | default: customer.email }}</p>
+              </div>
+              <div class="header__account-links">
+                <a href="{{ routes.account_url }}" class="header__account-link">
+                  <svg class="header__account-link-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M3.333 5h13.334M3.333 10h13.334M3.333 15h13.334" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                  </svg>
+                  <span>Orders</span>
+                </a>
+                <a href="{{ routes.account_url }}" class="header__account-link">
+                  <svg class="header__account-link-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10 10c2.5 0 4.583-2.083 4.583-4.583S12.5 0.833 10 0.833 5.417 2.917 5.417 5.417 7.5 10 10 10z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                    <path d="M17.5 19.167c0-4.167-3.333-7.5-7.5-7.5s-7.5 3.333-7.5 7.5" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                  </svg>
+                  <span>Profile</span>
+                </a>
+                <a href="{{ routes.account_logout_url }}" class="header__account-link header__account-link--logout">
+                  <span>Sign Out</span>
+                </a>
+              </div>
+            </div>
+          {%- else -%}
+            <!-- Not logged in state -->
+            <div class="header__account-dropdown-content">
+              <h3 class="header__account-title">Account</h3>
+              <div class="header__account-signin">
+                <a href="{{ routes.account_login_url }}" class="header__account-signin-btn header__account-signin-btn--primary">
+                  <span>Sign in with shop</span>
+                </a>
+                <a href="{{ routes.account_login_url }}" class="header__account-signin-btn header__account-signin-btn--secondary">
+                  <span>Other sign in options</span>
+                </a>
+              </div>
+              <div class="header__account-links">
+                <a href="{{ routes.account_login_url }}" class="header__account-link">
+                  <svg class="header__account-link-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M3.333 5h13.334M3.333 10h13.334M3.333 15h13.334" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                  </svg>
+                  <span>Orders</span>
+                </a>
+                <a href="{{ routes.account_login_url }}" class="header__account-link">
+                  <svg class="header__account-link-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10 10c2.5 0 4.583-2.083 4.583-4.583S12.5 0.833 10 0.833 5.417 2.917 5.417 5.417 7.5 10 10 10z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                    <path d="M17.5 19.167c0-4.167-3.333-7.5-7.5-7.5s-7.5 3.333-7.5 7.5" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                  </svg>
+                  <span>Profile</span>
+                </a>
+              </div>
+            </div>
+          {%- endif -%}
+        </div>
+      </div>
       <button type="button" class="header__action-btn header__cart-btn" aria-label="Cart" data-cart-toggle>
         {% render 'icon-cart' %}
         <span class="header__cart-count" data-cart-count>{{ cart.item_count }}</span>
@@ -123,6 +182,12 @@
       "type": "image_picker",
       "id": "logo",
       "label": "Logo image"
+    },
+    {
+      "type": "image_picker",
+      "id": "favicon",
+      "label": "Favicon",
+      "info": "Upload a favicon image (recommended size: 32x32px or 16x16px). This will appear in the browser tab."
     }
   ]
 }
