@@ -23,7 +23,7 @@
           "title_1": "Kombucha",
           "description_1": "",
           "link_1": "",
-          "image_2": "shopify://shop_images/NA_CM_1024x1024_fb98996d-464b-4f25-bb16-31783fdb2f6d.webp",
+          "image_2": "shopify://shop_images/vina.jpg",
           "title_2": "Prebiotic",
           "description_2": "",
           "link_2": ""
@@ -67,6 +67,17 @@
       "footer": {
         "type": "footer",
         "settings": {}
+      },
+      "announcement-bar": {
+        "type": "announcement-bar",
+        "settings": {
+          "message": "Free shipping on orders over $50",
+          "link": "",
+          "background_color": "#000000",
+          "text_color": "#ffffff",
+          "show_close_button": true,
+          "show_on_homepage_only": false
+        }
       }
     },
     "content_for_index": []
