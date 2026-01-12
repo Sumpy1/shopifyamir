@@ -1,0 +1,247 @@
+<div class="faq-page">
+  <div class="faq-page__inner">
+    <!-- Page Header -->
+    <div class="faq-page__header">
+      <span class="faq-page__label">{{ section.settings.label | default: 'Help Center' }}</span>
+      <h1 class="faq-page__title">{{ section.settings.title | default: 'Frequently Asked Questions' }}</h1>
+      <p class="faq-page__description">
+        {{ section.settings.description | default: 'Find answers to common questions about our products, shipping, returns, and more.' }}
+      </p>
+    </div>
+
+    <!-- FAQ Sections -->
+    <div class="faq-page__sections">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'category' -%}
+          <section class="faq-category" {{ block.shopify_attributes }}>
+            <h2 class="faq-category__title">{{ block.settings.category_title }}</h2>
+            <div class="faq-accordion">
+              {%- for i in (1..10) -%}
+                {%- assign question_key = 'question_' | append: i -%}
+                {%- assign answer_key = 'answer_' | append: i -%}
+                {%- assign question = block.settings[question_key] -%}
+                {%- assign answer = block.settings[answer_key] -%}
+                {%- if question != blank and answer != blank -%}
+                  <div class="faq-item">
+                    <button class="faq-item__trigger" type="button" aria-expanded="false" data-faq-trigger>
+                      <span>{{ question }}</span>
+                      <svg class="faq-item__icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M5 7.5l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    </button>
+                    <div class="faq-item__content" data-faq-content>
+                      <p>{{ answer }}</p>
+                    </div>
+                  </div>
+                {%- endif -%}
+              {%- endfor -%}
+            </div>
+          </section>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+
+    <!-- Contact Section -->
+    <div class="faq-page__contact">
+      <h2 class="faq-page__contact-title">{{ section.settings.contact_title | default: 'Still have questions?' }}</h2>
+      <p class="faq-page__contact-description">
+        {{ section.settings.contact_description | default: "Can't find what you're looking for? We're here to help!" }}
+      </p>
+      <div class="faq-page__contact-links">
+        <a href="mailto:{{ section.settings.contact_email | default: 'hello@kombuchamarket.com' }}" class="faq-page__contact-link">
+          {{ section.settings.contact_email | default: 'hello@kombuchamarket.com' }}
+        </a>
+        <span class="faq-page__contact-separator">•</span>
+        <a href="tel:{{ section.settings.contact_phone | default: '6155550123' }}" class="faq-page__contact-link">
+          {{ section.settings.contact_phone | default: '(615) 555-0123' }}
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const triggers = document.querySelectorAll('[data-faq-trigger]');
+  
+  triggers.forEach(trigger => {
+    trigger.addEventListener('click', function() {
+      const content = this.nextElementSibling;
+      const isExpanded = this.getAttribute('aria-expanded') === 'true';
+      
+      // Close all other items
+      triggers.forEach(t => {
+        if (t !== this) {
+          t.setAttribute('aria-expanded', 'false');
+          t.nextElementSibling.style.maxHeight = null;
+          t.classList.remove('is-active');
+        }
+      });
+      
+      // Toggle current item
+      if (isExpanded) {
+        this.setAttribute('aria-expanded', 'false');
+        content.style.maxHeight = null;
+        this.classList.remove('is-active');
+      } else {
+        this.setAttribute('aria-expanded', 'true');
+        content.style.maxHeight = content.scrollHeight + 'px';
+        this.classList.add('is-active');
+      }
+    });
+  });
+});
+</script>
+
+{% schema %}
+{
+  "name": "FAQ Page",
+  "settings": [
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Page Label",
+      "default": "Help Center"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Page Title",
+      "default": "Frequently Asked Questions"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Page Description",
+      "default": "Find answers to common questions about our products, shipping, returns, and more."
+    },
+    {
+      "type": "header",
+      "content": "Contact Section"
+    },
+    {
+      "type": "text",
+      "id": "contact_title",
+      "label": "Contact Title",
+      "default": "Still have questions?"
+    },
+    {
+      "type": "textarea",
+      "id": "contact_description",
+      "label": "Contact Description",
+      "default": "Can't find what you're looking for? We're here to help!"
+    },
+    {
+      "type": "text",
+      "id": "contact_email",
+      "label": "Contact Email",
+      "default": "hello@kombuchamarket.com"
+    },
+    {
+      "type": "text",
+      "id": "contact_phone",
+      "label": "Contact Phone",
+      "default": "(615) 555-0123"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "category",
+      "name": "FAQ Category",
+      "settings": [
+        {
+          "type": "text",
+          "id": "category_title",
+          "label": "Category Title",
+          "default": "Category"
+        },
+        {
+          "type": "text",
+          "id": "question_1",
+          "label": "Question 1"
+        },
+        {
+          "type": "textarea",
+          "id": "answer_1",
+          "label": "Answer 1"
+        },
+        {
+          "type": "text",
+          "id": "question_2",
+          "label": "Question 2"
+        },
+        {
+          "type": "textarea",
+          "id": "answer_2",
+          "label": "Answer 2"
+        },
+        {
+          "type": "text",
+          "id": "question_3",
+          "label": "Question 3"
+        },
+        {
+          "type": "textarea",
+          "id": "answer_3",
+          "label": "Answer 3"
+        },
+        {
+          "type": "text",
+          "id": "question_4",
+          "label": "Question 4"
+        },
+        {
+          "type": "textarea",
+          "id": "answer_4",
+          "label": "Answer 4"
+        },
+        {
+          "type": "text",
+          "id": "question_5",
+          "label": "Question 5"
+        },
+        {
+          "type": "textarea",
+          "id": "answer_5",
+          "label": "Answer 5"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "FAQ Page",
+      "blocks": [
+        {
+          "type": "category",
+          "settings": {
+            "category_title": "Products",
+            "question_1": "What is kombucha?",
+            "answer_1": "Kombucha is a fermented tea beverage made by adding a symbiotic culture of bacteria and yeast (SCOBY) to sweetened tea. It's naturally probiotic and contains beneficial acids and enzymes.",
+            "question_2": "Are your products organic?",
+            "answer_2": "Many of our products are organic. Look for the organic certification badge on product pages. We work with brands that prioritize organic ingredients whenever possible.",
+            "question_3": "Do you have sugar-free options?",
+            "answer_3": "Yes! We carry several brands that offer zero-sugar or low-sugar kombucha options. Filter by 'Low Sugar' in our shop to find these products.",
+            "question_4": "How long do kombucha products last?",
+            "answer_4": "Unopened kombucha typically lasts 6-12 months when stored in a cool, dark place. Once opened, consume within 7-10 days and keep refrigerated. Check the expiration date on each product."
+          }
+        },
+        {
+          "type": "category",
+          "settings": {
+            "category_title": "Shipping & Delivery",
+            "question_1": "How long does shipping take?",
+            "answer_1": "Standard shipping takes 5-7 business days. Express shipping (2-3 business days) is available for an additional fee. Orders are typically processed within 1-2 business days.",
+            "question_2": "Do you ship internationally?",
+            "answer_2": "Currently, we only ship within the United States. We're working on expanding our shipping options in the future.",
+            "question_3": "How are products packaged for shipping?",
+            "answer_3": "All kombucha products are shipped in temperature-controlled packaging to preserve quality and freshness. We use eco-friendly packaging materials whenever possible.",
+            "question_4": "Can I track my order?",
+            "answer_4": "Yes! Once your order ships, you'll receive a confirmation email with a tracking number. You can use this to track your package's journey."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

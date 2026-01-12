@@ -1,0 +1,493 @@
+<div class="shipping-returns-page">
+  <div class="shipping-returns-page__inner">
+    <!-- Page Header -->
+    <div class="shipping-returns-page__header">
+      <span class="shipping-returns-page__label">{{ section.settings.label | default: 'Shipping & Returns' }}</span>
+      <h1 class="shipping-returns-page__title">{{ section.settings.title | default: 'Shipping & Returns' }}</h1>
+      <p class="shipping-returns-page__description">
+        {{ section.settings.description | default: 'Everything you need to know about shipping, delivery, and returns.' }}
+      </p>
+    </div>
+
+    <!-- Shipping Section -->
+    <section class="shipping-section">
+      <h2 class="shipping-section__title">{{ section.settings.shipping_title | default: 'Shipping & Delivery' }}</h2>
+      
+      <!-- Shipping Options Grid -->
+      <div class="shipping-options">
+        <div class="shipping-option">
+          <svg class="shipping-option__icon" width="32" height="32" viewBox="0 0 24 24" fill="none">
+            <path d="M1 3h15v13H1zM16 3h6l-2 13H16M5 16h14M5 20h14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          <h3 class="shipping-option__title">{{ section.settings.standard_title | default: 'Standard Shipping' }}</h3>
+          <p class="shipping-option__text">{{ section.settings.standard_text | default: '5-7 business days. Free shipping on orders over $50.' }}</p>
+        </div>
+
+        <div class="shipping-option">
+          <svg class="shipping-option__icon" width="32" height="32" viewBox="0 0 24 24" fill="none">
+            <rect x="3" y="8" width="18" height="12" rx="2" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M3 10h18M7 14h10" stroke="currentColor" stroke-width="1.5"/>
+          </svg>
+          <h3 class="shipping-option__title">{{ section.settings.express_title | default: 'Express Shipping' }}</h3>
+          <p class="shipping-option__text">{{ section.settings.express_text | default: '2-3 business days. Available for an additional fee at checkout.' }}</p>
+        </div>
+
+        <div class="shipping-option">
+          <svg class="shipping-option__icon" width="32" height="32" viewBox="0 0 24 24" fill="none">
+            <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M12 6v6l4 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          <h3 class="shipping-option__title">{{ section.settings.processing_title | default: 'Processing Time' }}</h3>
+          <p class="shipping-option__text">{{ section.settings.processing_text | default: 'Orders are typically processed within 1-2 business days.' }}</p>
+        </div>
+
+        <div class="shipping-option">
+          <svg class="shipping-option__icon" width="32" height="32" viewBox="0 0 24 24" fill="none">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="currentColor" stroke-width="1.5"/>
+          </svg>
+          <h3 class="shipping-option__title">{{ section.settings.temp_title | default: 'Temperature Controlled' }}</h3>
+          <p class="shipping-option__text">{{ section.settings.temp_text | default: 'All kombucha products are shipped with temperature-controlled packaging to preserve quality.' }}</p>
+        </div>
+      </div>
+
+      <!-- Shipping Details -->
+      <div class="shipping-details">
+        <div class="shipping-detail">
+          <h3 class="shipping-detail__title">{{ section.settings.rates_title | default: 'Shipping Rates' }}</h3>
+          <div class="shipping-detail__content">
+            <ul class="shipping-rates">
+              <li class="shipping-rate">
+                <span class="shipping-rate__label">{{ section.settings.rate1_label | default: 'Orders under $50' }}</span>
+                <span class="shipping-rate__price">{{ section.settings.rate1_price | default: '$5.99' }}</span>
+              </li>
+              <li class="shipping-rate">
+                <span class="shipping-rate__label">{{ section.settings.rate2_label | default: 'Orders $50+' }}</span>
+                <span class="shipping-rate__price shipping-rate__price--free">{{ section.settings.rate2_price | default: 'FREE' }}</span>
+              </li>
+              <li class="shipping-rate">
+                <span class="shipping-rate__label">{{ section.settings.rate3_label | default: 'Express Shipping' }}</span>
+                <span class="shipping-rate__price">{{ section.settings.rate3_price | default: '$12.99' }}</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="shipping-detail">
+          <h3 class="shipping-detail__title">{{ section.settings.areas_title | default: 'Delivery Areas' }}</h3>
+          <div class="shipping-detail__content">
+            <p>{{ section.settings.areas_text | default: 'We currently ship to all 50 US states. International shipping is not available at this time. For local Nashville customers, we offer same-day delivery on orders placed before 2 PM. Contact us for more information.' }}</p>
+          </div>
+        </div>
+
+        <div class="shipping-detail">
+          <h3 class="shipping-detail__title">{{ section.settings.tracking_title | default: 'Tracking Your Order' }}</h3>
+          <div class="shipping-detail__content">
+            <p>{{ section.settings.tracking_text | default: "Once your order ships, you'll receive a confirmation email with a tracking number. You can use this number to track your package's journey to your door." }}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Returns Section -->
+    <section class="returns-section">
+      <h2 class="returns-section__title">{{ section.settings.returns_title | default: 'Returns & Exchanges' }}</h2>
+      
+      <!-- Return Options -->
+      <div class="return-options">
+        <div class="return-option">
+          <svg class="return-option__icon" width="32" height="32" viewBox="0 0 24 24" fill="none">
+            <path d="M1 4v6h6M23 20v-6h-6M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          <h3 class="return-option__title">{{ section.settings.return30_title | default: '30-Day Returns' }}</h3>
+          <p class="return-option__text">{{ section.settings.return30_text | default: 'Return unopened items within 30 days of delivery for a full refund.' }}</p>
+        </div>
+
+        <div class="return-option">
+          <svg class="return-option__icon" width="32" height="32" viewBox="0 0 24 24" fill="none">
+            <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M12 6v6l4 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          <h3 class="return-option__title">{{ section.settings.refund_title | default: 'Processing Time' }}</h3>
+          <p class="return-option__text">{{ section.settings.refund_text | default: 'Refunds are processed within 5-7 business days after we receive your return.' }}</p>
+        </div>
+      </div>
+
+      <!-- Return Details -->
+      <div class="returns-details">
+        <div class="return-detail">
+          <h3 class="return-detail__title">{{ section.settings.howto_title | default: 'How to Return' }}</h3>
+          <div class="return-detail__content">
+            <ol class="return-steps">
+              <li>{{ section.settings.step1 | default: 'Contact us to initiate your return. Include your order number and reason for return.' }}</li>
+              <li>{{ section.settings.step2 | default: "We'll send you a prepaid return shipping label via email." }}</li>
+              <li>{{ section.settings.step3 | default: 'Package the items securely in their original packaging (if available).' }}</li>
+              <li>{{ section.settings.step4 | default: 'Drop off the package at any UPS location or schedule a pickup.' }}</li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="return-detail">
+          <h3 class="return-detail__title">{{ section.settings.conditions_title | default: 'Return Conditions' }}</h3>
+          <div class="return-conditions">
+            <div class="return-condition return-condition--accepted">
+              <svg class="return-condition__icon" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <circle cx="12" cy="12" r="10" stroke="#22c55e" stroke-width="1.5"/>
+                <path d="M8 12l2 2 4-4" stroke="#22c55e" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+              <h4 class="return-condition__title">{{ section.settings.accepted_title | default: 'Accepted' }}</h4>
+              <ul class="return-condition__list">
+                <li>{{ section.settings.accepted1 | default: 'Unopened products in original packaging' }}</li>
+                <li>{{ section.settings.accepted2 | default: 'Products damaged during shipping' }}</li>
+                <li>{{ section.settings.accepted3 | default: 'Wrong items received' }}</li>
+                <li>{{ section.settings.accepted4 | default: 'Defective products' }}</li>
+              </ul>
+            </div>
+            <div class="return-condition return-condition--not-accepted">
+              <svg class="return-condition__icon" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <circle cx="12" cy="12" r="10" stroke="#ef4444" stroke-width="1.5"/>
+                <path d="M9 9l6 6M15 9l-6 6" stroke="#ef4444" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+              <h4 class="return-condition__title">{{ section.settings.notaccepted_title | default: 'Not Accepted' }}</h4>
+              <ul class="return-condition__list">
+                <li>{{ section.settings.notaccepted1 | default: 'Opened or partially consumed products' }}</li>
+                <li>{{ section.settings.notaccepted2 | default: 'Products past expiration date' }}</li>
+                <li>{{ section.settings.notaccepted3 | default: 'Items damaged by customer' }}</li>
+                <li>{{ section.settings.notaccepted4 | default: 'Returns after 30 days' }}</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="return-detail">
+          <h3 class="return-detail__title">{{ section.settings.exchange_title | default: 'Exchanges' }}</h3>
+          <div class="return-detail__content">
+            <p>{{ section.settings.exchange_text | default: "We currently don't offer direct exchanges. To exchange an item: Return the item you don't want following our return process. Place a new order for the item you'd like instead. We'll process your refund once we receive the return." }}</p>
+          </div>
+        </div>
+
+        <div class="return-detail">
+          <h3 class="return-detail__title">{{ section.settings.refund_method_title | default: 'Refund Method' }}</h3>
+          <div class="return-detail__content">
+            <p>{{ section.settings.refund_method_text | default: 'Refunds will be issued to the original payment method used for the purchase. Please allow 5-7 business days for the refund to appear in your account after we process your return.' }}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Questions Section -->
+    <section class="shipping-returns-questions">
+      <h2 class="shipping-returns-questions__title">{{ section.settings.questions_title | default: 'Questions?' }}</h2>
+      <p class="shipping-returns-questions__text">
+        {{ section.settings.questions_text | default: "If you have any questions about shipping or returns, please don't hesitate to" }}
+        <a href="/pages/contact" class="shipping-returns-questions__link">contact us</a>.
+        {{ section.settings.questions_text2 | default: "We're here to help!" }}
+      </p>
+    </section>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Shipping & Returns Page",
+  "settings": [
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Page Label",
+      "default": "Shipping & Returns"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Page Title",
+      "default": "Shipping & Returns"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Page Description",
+      "default": "Everything you need to know about shipping, delivery, and returns."
+    },
+    {
+      "type": "header",
+      "content": "Shipping Section"
+    },
+    {
+      "type": "text",
+      "id": "shipping_title",
+      "label": "Shipping Section Title",
+      "default": "Shipping & Delivery"
+    },
+    {
+      "type": "text",
+      "id": "standard_title",
+      "label": "Standard Shipping Title",
+      "default": "Standard Shipping"
+    },
+    {
+      "type": "textarea",
+      "id": "standard_text",
+      "label": "Standard Shipping Text",
+      "default": "5-7 business days. Free shipping on orders over $50."
+    },
+    {
+      "type": "text",
+      "id": "express_title",
+      "label": "Express Shipping Title",
+      "default": "Express Shipping"
+    },
+    {
+      "type": "textarea",
+      "id": "express_text",
+      "label": "Express Shipping Text",
+      "default": "2-3 business days. Available for an additional fee at checkout."
+    },
+    {
+      "type": "text",
+      "id": "processing_title",
+      "label": "Processing Title",
+      "default": "Processing Time"
+    },
+    {
+      "type": "textarea",
+      "id": "processing_text",
+      "label": "Processing Text",
+      "default": "Orders are typically processed within 1-2 business days."
+    },
+    {
+      "type": "text",
+      "id": "temp_title",
+      "label": "Temperature Title",
+      "default": "Temperature Controlled"
+    },
+    {
+      "type": "textarea",
+      "id": "temp_text",
+      "label": "Temperature Text",
+      "default": "All kombucha products are shipped with temperature-controlled packaging to preserve quality."
+    },
+    {
+      "type": "text",
+      "id": "rates_title",
+      "label": "Rates Title",
+      "default": "Shipping Rates"
+    },
+    {
+      "type": "text",
+      "id": "rate1_label",
+      "label": "Rate 1 Label",
+      "default": "Orders under $50"
+    },
+    {
+      "type": "text",
+      "id": "rate1_price",
+      "label": "Rate 1 Price",
+      "default": "$5.99"
+    },
+    {
+      "type": "text",
+      "id": "rate2_label",
+      "label": "Rate 2 Label",
+      "default": "Orders $50+"
+    },
+    {
+      "type": "text",
+      "id": "rate2_price",
+      "label": "Rate 2 Price",
+      "default": "FREE"
+    },
+    {
+      "type": "text",
+      "id": "rate3_label",
+      "label": "Rate 3 Label",
+      "default": "Express Shipping"
+    },
+    {
+      "type": "text",
+      "id": "rate3_price",
+      "label": "Rate 3 Price",
+      "default": "$12.99"
+    },
+    {
+      "type": "text",
+      "id": "areas_title",
+      "label": "Areas Title",
+      "default": "Delivery Areas"
+    },
+    {
+      "type": "textarea",
+      "id": "areas_text",
+      "label": "Areas Text"
+    },
+    {
+      "type": "text",
+      "id": "tracking_title",
+      "label": "Tracking Title",
+      "default": "Tracking Your Order"
+    },
+    {
+      "type": "textarea",
+      "id": "tracking_text",
+      "label": "Tracking Text"
+    },
+    {
+      "type": "header",
+      "content": "Returns Section"
+    },
+    {
+      "type": "text",
+      "id": "returns_title",
+      "label": "Returns Title",
+      "default": "Returns & Exchanges"
+    },
+    {
+      "type": "text",
+      "id": "return30_title",
+      "label": "30 Day Return Title",
+      "default": "30-Day Returns"
+    },
+    {
+      "type": "textarea",
+      "id": "return30_text",
+      "label": "30 Day Return Text",
+      "default": "Return unopened items within 30 days of delivery for a full refund."
+    },
+    {
+      "type": "text",
+      "id": "refund_title",
+      "label": "Refund Title",
+      "default": "Processing Time"
+    },
+    {
+      "type": "textarea",
+      "id": "refund_text",
+      "label": "Refund Text",
+      "default": "Refunds are processed within 5-7 business days after we receive your return."
+    },
+    {
+      "type": "text",
+      "id": "howto_title",
+      "label": "How To Title",
+      "default": "How to Return"
+    },
+    {
+      "type": "textarea",
+      "id": "step1",
+      "label": "Step 1"
+    },
+    {
+      "type": "textarea",
+      "id": "step2",
+      "label": "Step 2"
+    },
+    {
+      "type": "textarea",
+      "id": "step3",
+      "label": "Step 3"
+    },
+    {
+      "type": "textarea",
+      "id": "step4",
+      "label": "Step 4"
+    },
+    {
+      "type": "text",
+      "id": "conditions_title",
+      "label": "Conditions Title",
+      "default": "Return Conditions"
+    },
+    {
+      "type": "text",
+      "id": "accepted_title",
+      "label": "Accepted Title",
+      "default": "Accepted"
+    },
+    {
+      "type": "text",
+      "id": "accepted1",
+      "label": "Accepted Item 1"
+    },
+    {
+      "type": "text",
+      "id": "accepted2",
+      "label": "Accepted Item 2"
+    },
+    {
+      "type": "text",
+      "id": "accepted3",
+      "label": "Accepted Item 3"
+    },
+    {
+      "type": "text",
+      "id": "accepted4",
+      "label": "Accepted Item 4"
+    },
+    {
+      "type": "text",
+      "id": "notaccepted_title",
+      "label": "Not Accepted Title",
+      "default": "Not Accepted"
+    },
+    {
+      "type": "text",
+      "id": "notaccepted1",
+      "label": "Not Accepted Item 1"
+    },
+    {
+      "type": "text",
+      "id": "notaccepted2",
+      "label": "Not Accepted Item 2"
+    },
+    {
+      "type": "text",
+      "id": "notaccepted3",
+      "label": "Not Accepted Item 3"
+    },
+    {
+      "type": "text",
+      "id": "notaccepted4",
+      "label": "Not Accepted Item 4"
+    },
+    {
+      "type": "text",
+      "id": "exchange_title",
+      "label": "Exchange Title",
+      "default": "Exchanges"
+    },
+    {
+      "type": "textarea",
+      "id": "exchange_text",
+      "label": "Exchange Text"
+    },
+    {
+      "type": "text",
+      "id": "refund_method_title",
+      "label": "Refund Method Title",
+      "default": "Refund Method"
+    },
+    {
+      "type": "textarea",
+      "id": "refund_method_text",
+      "label": "Refund Method Text"
+    },
+    {
+      "type": "text",
+      "id": "questions_title",
+      "label": "Questions Title",
+      "default": "Questions?"
+    },
+    {
+      "type": "textarea",
+      "id": "questions_text",
+      "label": "Questions Text",
+      "default": "If you have any questions about shipping or returns, please don't hesitate to"
+    },
+    {
+      "type": "text",
+      "id": "questions_text2",
+      "label": "Questions Text 2",
+      "default": "We're here to help!"
+    }
+  ]
+}
+{% endschema %}
