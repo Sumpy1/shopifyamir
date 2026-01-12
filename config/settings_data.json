@@ -206,6 +206,29 @@
           "contact_email": "hello@kombuchamarket.com",
           "contact_phone": "(615) 555-0123"
         }
+      },
+      "about": {
+        "type": "about",
+        "settings": {
+          "hero_label": "Our Story",
+          "hero_title": "American Brew Brand\nArtisanal Kombucha",
+          "hero_image": "shopify://shop_images/GettyImages-1400340461.jpg",
+          "origin_label": "How It Began",
+          "origin_title": "Born from a Love of\nCraft & Community",
+          "origin_text": "",
+          "origin_image": "shopify://shop_images/smiling-man-holds-cup-of-tea.jpg",
+          "mission_label": "Our Mission",
+          "mission_text": "\"To connect discerning consumers with exceptional kombucha makers, fostering a community where craft, wellness, and taste converge.\"",
+          "values_label": "What We Believe",
+          "values_title": "Our Values",
+          "nashville_label": "Our Home",
+          "nashville_title": "Proudly American",
+          "nashville_text": "",
+          "cta_title": "Ready to Explore?",
+          "cta_description": "Discover our curated selection of America's finest kombucha.",
+          "cta_shop_url": "",
+          "cta_brands_url": ""
+        }
       }
     },
     "content_for_index": []
