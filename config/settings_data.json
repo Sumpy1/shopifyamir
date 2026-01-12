@@ -251,6 +251,42 @@
           "modal_description": "Sign up to receive a free recipe for crafting delicious kombucha at home. Learn the art of fermentation and create your own probiotic-rich beverages.",
           "modal_delay": 3
         }
+      },
+      "wellness-hero": {
+        "type": "wellness-hero",
+        "settings": {
+          "label": "Wellness",
+          "title": "Kombucha Wellness\n& Health Insights",
+          "subtitle": "Discover the health benefits, brewing tips, and wellness stories from the kombucha community",
+          "background_image": "shopify://shop_images/poolside-table.jpg"
+        }
+      },
+      "wellness-blog-listing": {
+        "type": "wellness-blog-listing",
+        "settings": {
+          "title": "Latest Kombucha Articles",
+          "blog": "news",
+          "posts_per_page": 6,
+          "show_excerpt": true
+        }
+      },
+      "wellness-featured-blogs": {
+        "type": "wellness-featured-blogs",
+        "blocks": {
+          "article_ETyPTq": {
+            "type": "article",
+            "settings": {
+              "article": "news/guide-to-homemade-kombucha"
+            }
+          }
+        },
+        "block_order": [
+          "article_ETyPTq"
+        ],
+        "settings": {
+          "title": "Featured Articles",
+          "subtitle": "Handpicked kombucha wellness stories and health insights"
+        }
       }
     },
     "content_for_index": []
