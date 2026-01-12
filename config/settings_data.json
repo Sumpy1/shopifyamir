@@ -143,6 +143,38 @@
       "faq": {
         "type": "faq",
         "blocks": {
+          "category_wcTU8z": {
+            "type": "category",
+            "settings": {
+              "category_title": "Category",
+              "question_1": "",
+              "answer_1": "",
+              "question_2": "",
+              "answer_2": "",
+              "question_3": "",
+              "answer_3": "",
+              "question_4": "",
+              "answer_4": "",
+              "question_5": "",
+              "answer_5": ""
+            }
+          },
+          "category_wnJeEg": {
+            "type": "category",
+            "settings": {
+              "category_title": "Shipping & Delivery",
+              "question_1": "How long does shipping take?",
+              "answer_1": "Standard shipping takes 5-7 business days. Express shipping (2-3 business days) is available for an additional fee. Orders are typically processed within 1-2 business days.",
+              "question_2": "Do you ship internationally?",
+              "answer_2": "Currently, we only ship within the United States. We're working on expanding our shipping options in the future.",
+              "question_3": "How are products packaged for shipping?",
+              "answer_3": "All kombucha products are shipped in temperature-controlled packaging to preserve quality and freshness. We use eco-friendly packaging materials whenever possible.",
+              "question_4": "Can I track my order?",
+              "answer_4": "Yes! Once your order ships, you'll receive a confirmation email with a tracking number. You can use this to track your package's journey.",
+              "question_5": "",
+              "answer_5": ""
+            }
+          },
           "category_GTYyU7": {
             "type": "category",
             "settings": {
@@ -161,6 +193,8 @@
           }
         },
         "block_order": [
+          "category_wcTU8z",
+          "category_wnJeEg",
           "category_GTYyU7"
         ],
         "settings": {
