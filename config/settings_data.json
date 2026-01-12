@@ -41,7 +41,7 @@
         "settings": {
           "image": "shopify://shop_images/All_Flavors.webp",
           "title": "Elevate Your Wellness",
-          "description": "",
+          "description": "We feature America's most distinguished kombucha artisans to bring you the finest selection of craft fermented beverages.",
           "button_text": "",
           "button_link": ""
         }
@@ -118,6 +118,10 @@
           "brand_UGjFFV",
           "brand_6yEYdg"
         ],
+        "settings": {}
+      },
+      "product-template": {
+        "type": "product-template",
         "settings": {}
       }
     },
