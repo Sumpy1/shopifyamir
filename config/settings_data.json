@@ -240,6 +240,16 @@
           "cta_shop_url": "",
           "cta_brands_url": ""
         }
+      },
+      "email-capture-modal": {
+        "type": "email-capture-modal",
+        "settings": {
+          "modal_enabled": true,
+          "modal_image": "shopify://shop_images/Gemini_Generated_Image_8jwgst8jwgst8jwg.png",
+          "modal_title": "Get Your Free Kombucha Recipe!",
+          "modal_description": "Sign up to receive a free recipe for crafting delicious kombucha at home. Learn the art of fermentation and create your own probiotic-rich beverages.",
+          "modal_delay": 3
+        }
       }
     },
     "content_for_index": []
