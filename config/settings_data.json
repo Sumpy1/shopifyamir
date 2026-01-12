@@ -13,7 +13,8 @@
       "header": {
         "type": "header",
         "settings": {
-          "menu": "main-menu"
+          "menu": "main-menu",
+          "favicon": "shopify://shop_images/888F1892-44D4-42D2-B098-550D2D5E6429_1_201_a.jpg"
         }
       },
       "split-section": {
