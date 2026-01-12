@@ -23,11 +23,11 @@
           "image_1": "shopify://shop_images/NA_Ginger_1024x1024_ce3479cd-4499-4868-9bc7-a5a332fb627d.webp",
           "title_1": "Kombucha",
           "description_1": "",
-          "link_1": "",
+          "link_1": "shopify://collections/walker-brothers",
           "image_2": "shopify://shop_images/NA_CM_1024x1024_fb98996d-464b-4f25-bb16-31783fdb2f6d.webp",
           "title_2": "Prebiotic",
           "description_2": "",
-          "link_2": ""
+          "link_2": "shopify://collections/walker-brothers"
         }
       },
       "product-carousel": {
