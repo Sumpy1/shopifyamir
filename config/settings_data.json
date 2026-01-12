@@ -82,12 +82,22 @@
       "brands": {
         "type": "brands",
         "blocks": {
+          "brand_e7Pf47": {
+            "type": "brand",
+            "settings": {
+              "name": "Humm",
+              "tagline": "fruity",
+              "description": "",
+              "image": "shopify://shop_images/HUMM_ZERO_RaspberryLemonade_Web_PDP_1.webp",
+              "collection_url": "shopify://collections/humm"
+            }
+          },
           "brand_UGjFFV": {
             "type": "brand",
             "settings": {
               "name": "Yuzu",
-              "tagline": "Tagline",
-              "description": "Brand description",
+              "tagline": "Japanese",
+              "description": "Kimino",
               "image": "shopify://shop_images/Kimini.webp",
               "collection_url": "shopify://collections/walker-brothers"
             }
@@ -104,6 +114,7 @@
           }
         },
         "block_order": [
+          "brand_e7Pf47",
           "brand_UGjFFV",
           "brand_6yEYdg"
         ],
