@@ -82,6 +82,16 @@
       "brands": {
         "type": "brands",
         "blocks": {
+          "brand_UGjFFV": {
+            "type": "brand",
+            "settings": {
+              "name": "Yuzu",
+              "tagline": "Tagline",
+              "description": "Brand description",
+              "image": "shopify://shop_images/Kimini.webp",
+              "collection_url": "shopify://collections/walker-brothers"
+            }
+          },
           "brand_6yEYdg": {
             "type": "brand",
             "settings": {
@@ -94,6 +104,7 @@
           }
         },
         "block_order": [
+          "brand_UGjFFV",
           "brand_6yEYdg"
         ],
         "settings": {}
