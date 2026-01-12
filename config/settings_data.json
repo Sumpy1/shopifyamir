@@ -78,6 +78,25 @@
           "show_close_button": true,
           "show_on_homepage_only": false
         }
+      },
+      "brands": {
+        "type": "brands",
+        "blocks": {
+          "brand_6yEYdg": {
+            "type": "brand",
+            "settings": {
+              "name": "Walker Brothers Nashville",
+              "tagline": "Tagline",
+              "description": "Brand description",
+              "image": "shopify://shop_images/f0466ed591ce1942a4aa1fe9724ef5b60516c491d737c8c1a8f09d92dcf114c3.webp",
+              "collection_url": ""
+            }
+          }
+        },
+        "block_order": [
+          "brand_6yEYdg"
+        ],
+        "settings": {}
       }
     },
     "content_for_index": []
