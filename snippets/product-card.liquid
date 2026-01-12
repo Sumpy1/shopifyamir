@@ -31,10 +31,45 @@
       {%- endif -%}
     </div>
     <div class="product-card__info">
-      {%- if show_category -%}
-        {%- assign product_type = product.type | default: 'Product' -%}
-        <p class="product-card__category">{{ product_type }}</p>
-      {%- endif -%}
+      <div class="product-card__tags">
+        {%- if product.vendor != blank -%}
+          <span class="product-card__tag product-card__tag--brand">{{ product.vendor | upcase }}</span>
+        {%- endif -%}
+        {%- comment -%}
+          Check for pack size in metafields
+          Common metafield namespaces: custom, my_fields, pack_size
+        {%- endcomment -%}
+        {%- assign pack_size = product.metafields.custom.pack_size | default: product.metafields.my_fields.pack_size | default: product.metafields.pack_size.value | default: product.metafields.pack_size -%}
+        {%- if pack_size == blank -%}
+          {%- comment -%} Try to extract from product title (e.g., "Pack of 12", "12 Pack") {%- endcomment -%}
+          {%- if product.title contains 'Pack of' or product.title contains 'pack of' -%}
+            {%- assign pack_parts = product.title | split: 'Pack of' | last | split: ' ' -%}
+            {%- for part in pack_parts -%}
+              {%- assign part_stripped = part | strip -%}
+              {%- if part_stripped != blank and part_stripped != '-' -%}
+                {%- assign pack_size = part_stripped | strip -%}
+                {%- break -%}
+              {%- endif -%}
+            {%- endfor -%}
+          {%- elsif product.title contains 'Pack' or product.title contains 'pack' -%}
+            {%- assign pack_parts = product.title | split: 'Pack' | last | split: ' ' -%}
+            {%- for part in pack_parts -%}
+              {%- assign part_stripped = part | strip -%}
+              {%- if part_stripped != blank and part_stripped != '-' -%}
+                {%- assign pack_size = part_stripped | strip -%}
+                {%- break -%}
+              {%- endif -%}
+            {%- endfor -%}
+          {%- endif -%}
+        {%- endif -%}
+        {%- if pack_size != blank -%}
+          {%- assign pack_size_clean = pack_size | strip -%}
+          {%- unless pack_size_clean contains 'PACK' or pack_size_clean contains 'Pack' -%}
+            {%- assign pack_size_clean = 'PACK OF ' | append: pack_size_clean -%}
+          {%- endunless -%}
+          <span class="product-card__tag product-card__tag--pack">{{ pack_size_clean | upcase }}</span>
+        {%- endif -%}
+      </div>
       <h3 class="product-card__name">{{ product.title }}</h3>
       <p class="product-card__price">
         {{ product.price | money }}

@@ -1,12 +1,4 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
+
 {
   "current": {
     "sections": {
@@ -51,8 +43,21 @@
         "settings": {
           "image_1": "shopify://shop_images/Gemini_Generated_Image_5rgcrz5rgcrz5rgc.png",
           "link_1": "",
-          "image_2": "shopify://shop_images/patio-drinks.jpg",
-          "link_2": ""
+
+          "image_2": "shopify://shop_images/kambucha-and-cookies-for-santa.jpg",
+          "link_2": "",
+          "overlay_text_2": "Want to sell your Kombucha on Kombucha Market?",
+          "overlay_button_text_2": "Contact us",
+          "overlay_button_link_2": "/pages/contact"
+        }
+      },
+      "seller-cta": {
+        "type": "seller-cta",
+        "settings": {
+          "text": "Want to sell your Kombucha on Kombucha Market?",
+          "button_text": "Contact us",
+          "button_link": "/pages/contact"
+
         }
       },
       "editorial": {

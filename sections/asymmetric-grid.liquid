@@ -31,24 +31,36 @@
     </div>
 
     <div class="asymmetric-grid__item asymmetric-grid__item--large">
-      {%- if link_2 != blank -%}
+      <div class="asymmetric-grid__image-wrapper">
+        {%- if image_2 != blank -%}
+          <img 
+            src="{{ image_2 | image_url: width: 1600 }}" 
+            alt="{{ image_2.alt | escape }}"
+            class="asymmetric-grid__image"
+            loading="lazy"
+            width="1600"
+            height="1200"
+          >
+        {%- else -%}
+          {{ 'image' | placeholder_svg_tag: 'asymmetric-grid__placeholder' }}
+        {%- endif -%}
+        {%- if section.settings.overlay_text_2 != blank or section.settings.overlay_button_text_2 != blank -%}
+          <div class="asymmetric-grid__overlay">
+            <div class="asymmetric-grid__overlay-content">
+              {%- if section.settings.overlay_text_2 != blank -%}
+                <p class="asymmetric-grid__overlay-text">{{ section.settings.overlay_text_2 }}</p>
+              {%- endif -%}
+              {%- if section.settings.overlay_button_text_2 != blank -%}
+                <a href="{{ section.settings.overlay_button_link_2 | default: '/pages/contact' }}" class="asymmetric-grid__overlay-button">
+                  {{ section.settings.overlay_button_text_2 }}
+                </a>
+              {%- endif -%}
+            </div>
+          </div>
+        {%- endif -%}
+      </div>
+      {%- if link_2 != blank and section.settings.overlay_text_2 == blank and section.settings.overlay_button_text_2 == blank -%}
         <a href="{{ link_2 }}" class="asymmetric-grid__link">
-      {%- endif -%}
-        <div class="asymmetric-grid__image-wrapper">
-          {%- if image_2 != blank -%}
-            <img 
-              src="{{ image_2 | image_url: width: 1600 }}" 
-              alt="{{ image_2.alt | escape }}"
-              class="asymmetric-grid__image"
-              loading="lazy"
-              width="1600"
-              height="1200"
-            >
-          {%- else -%}
-            {{ 'image' | placeholder_svg_tag: 'asymmetric-grid__placeholder' }}
-          {%- endif -%}
-        </div>
-      {%- if link_2 != blank -%}
         </a>
       {%- endif -%}
     </div>
@@ -85,7 +97,30 @@
     {
       "type": "url",
       "id": "link_2",
-      "label": "Link"
+      "label": "Link",
+      "info": "Only used if overlay is not enabled"
+    },
+    {
+      "type": "header",
+      "content": "Overlay Content"
+    },
+    {
+      "type": "textarea",
+      "id": "overlay_text_2",
+      "label": "Overlay Text",
+      "default": "Want to sell your Kombucha on Kombucha Market?"
+    },
+    {
+      "type": "text",
+      "id": "overlay_button_text_2",
+      "label": "Button Text",
+      "default": "Contact us"
+    },
+    {
+      "type": "url",
+      "id": "overlay_button_link_2",
+      "label": "Button Link",
+      "info": "Leave empty to use default contact page"
     }
   ],
   "presets": [

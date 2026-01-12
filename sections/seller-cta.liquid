@@ -1,0 +1,51 @@
+{%- liquid
+  assign text = section.settings.text
+  assign button_text = section.settings.button_text
+  assign button_link = section.settings.button_link
+-%}
+
+<section class="seller-cta" data-section>
+  <div class="seller-cta__inner">
+    <div class="seller-cta__content">
+      {%- if text != blank -%}
+        <p class="seller-cta__text">{{ text }}</p>
+      {%- endif -%}
+      {%- if button_text != blank -%}
+        <a href="{{ button_link | default: '/pages/contact' }}" class="seller-cta__button">
+          {{ button_text }}
+        </a>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Seller CTA",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Text Content",
+      "default": "Want to sell your Kombucha on Kombucha Market?"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Contact us"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link",
+      "info": "Leave empty to use default contact page"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Seller CTA"
+    }
+  ]
+}
+{% endschema %}
