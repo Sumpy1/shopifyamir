@@ -146,15 +146,15 @@
           "category_wcTU8z": {
             "type": "category",
             "settings": {
-              "category_title": "Category",
-              "question_1": "",
-              "answer_1": "",
-              "question_2": "",
-              "answer_2": "",
-              "question_3": "",
-              "answer_3": "",
-              "question_4": "",
-              "answer_4": "",
+              "category_title": "Returns & Refunds",
+              "question_1": "What is your return policy?",
+              "answer_1": "We offer 30-day returns on unopened products in their original packaging. Products damaged during shipping or defective items are always eligible for return or replacement.",
+              "question_2": "How do I return an item?",
+              "answer_2": "Contact us at returns@kombuchamarket.com with your order number. We'll send you a prepaid return label and process your refund within 5-7 business days of receiving the return.",
+              "question_3": "Can I exchange an item?",
+              "answer_3": "We don't offer direct exchanges, but you can return an item and place a new order. We'll process your refund once we receive the return.",
+              "question_4": "How long do refunds take?",
+              "answer_4": "Refunds are processed within 5-7 business days after we receive your return. The refund will appear in your original payment method within 1-2 business days after processing.",
               "question_5": "",
               "answer_5": ""
             }
