@@ -245,7 +245,7 @@
         "type": "email-capture-modal",
         "settings": {
           "modal_enabled": true,
-          "modal_image": "shopify://shop_images/yuzu.webp",
+          "modal_image": "shopify://shop_images/NA_Citrus_1024x1024_683a7228-dc28-4f27-b175-2f784da4b3ff.webp",
           "modal_title": "Get Your Free Kombucha Recipe!",
           "modal_description": "Sign up to receive a free recipe for crafting delicious kombucha at home. Learn the art of fermentation and create your own probiotic-rich beverages.",
           "modal_delay": 3
