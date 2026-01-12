@@ -1,0 +1,83 @@
+{%- if predictive_search.performed -%}
+  <div class="predictive-search" data-predictive-search-results>
+    {%- if predictive_search.resources.products.size > 0 -%}
+      <div class="predictive-search__section">
+        <h3 class="predictive-search__title">Products</h3>
+        <ul class="predictive-search__list" role="listbox">
+          {%- for product in predictive_search.resources.products limit: 5 -%}
+            <li class="predictive-search__item" role="option">
+              <a href="{{ product.url }}" class="predictive-search__link">
+                {%- if product.featured_image -%}
+                  <div class="predictive-search__image">
+                    <img 
+                      src="{{ product.featured_image | image_url: width: 60 }}" 
+                      alt="{{ product.title | escape }}"
+                      width="60"
+                      height="60"
+                      loading="lazy"
+                    >
+                  </div>
+                {%- endif -%}
+                <div class="predictive-search__content">
+                  <div class="predictive-search__product-title">{{ product.title }}</div>
+                  <div class="predictive-search__product-price">{{ product.price | money }}</div>
+                </div>
+              </a>
+            </li>
+          {%- endfor -%}
+        </ul>
+      </div>
+    {%- endif -%}
+
+    {%- if predictive_search.resources.collections.size > 0 -%}
+      <div class="predictive-search__section">
+        <h3 class="predictive-search__title">Collections</h3>
+        <ul class="predictive-search__list" role="listbox">
+          {%- for collection in predictive_search.resources.collections limit: 3 -%}
+            <li class="predictive-search__item" role="option">
+              <a href="{{ collection.url }}" class="predictive-search__link">
+                {%- if collection.featured_image -%}
+                  <div class="predictive-search__image">
+                    <img 
+                      src="{{ collection.featured_image | image_url: width: 60 }}" 
+                      alt="{{ collection.title | escape }}"
+                      width="60"
+                      height="60"
+                      loading="lazy"
+                    >
+                  </div>
+                {%- endif -%}
+                <div class="predictive-search__content">
+                  <div class="predictive-search__collection-title">{{ collection.title }}</div>
+                </div>
+              </a>
+            </li>
+          {%- endfor -%}
+        </ul>
+      </div>
+    {%- endif -%}
+
+    {%- if predictive_search.resources.queries.size > 0 -%}
+      <div class="predictive-search__section">
+        <h3 class="predictive-search__title">Suggestions</h3>
+        <ul class="predictive-search__list" role="listbox">
+          {%- for query in predictive_search.resources.queries limit: 3 -%}
+            <li class="predictive-search__item" role="option">
+              <a href="{{ query.url }}" class="predictive-search__link predictive-search__link--query">
+                <div class="predictive-search__content">
+                  <div class="predictive-search__query-text">{{ query.text }}</div>
+                </div>
+              </a>
+            </li>
+          {%- endfor -%}
+        </ul>
+      </div>
+    {%- endif -%}
+
+    <div class="predictive-search__footer">
+      <a href="{{ routes.search_url }}?q={{ predictive_search.terms | escape }}" class="predictive-search__view-all">
+        View all results for "{{ predictive_search.terms }}"
+      </a>
+    </div>
+  </div>
+{%- endif -%}

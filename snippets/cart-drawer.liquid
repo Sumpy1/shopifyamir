@@ -15,8 +15,7 @@
     </div>
     <div class="cart-drawer__content" data-cart-content>
       {%- if cart.item_count > 0 -%}
-        {% form 'cart', cart, class: 'cart-drawer__form', data-cart-drawer-form: '' %}
-          <div class="cart-drawer__items" data-cart-items>
+        <div class="cart-drawer__items" data-cart-items>
             {%- for item in cart.items -%}
               <div class="cart-drawer__item" data-cart-item="{{ item.key }}">
                 <div class="cart-drawer__item-image">
@@ -40,15 +39,20 @@
                   <div class="cart-drawer__item-price">{{ item.final_line_price | money }}</div>
                   <div class="cart-drawer__item-quantity">
                     <label for="drawer_updates_{{ item.key }}" class="visually-hidden">Quantity</label>
-                    <input 
-                      type="number" 
-                      name="updates[]" 
-                      id="drawer_updates_{{ item.key }}"
-                      value="{{ item.quantity }}" 
-                      min="0"
-                      class="cart-drawer__quantity-input"
-                      data-cart-quantity-input
-                    >
+                    <div class="cart-drawer__quantity-controls" data-quantity-controls data-line="{{ forloop.index }}" data-key="{{ item.key }}">
+                      <button type="button" class="cart-drawer__quantity-btn cart-drawer__quantity-btn--decrease" data-quantity-decrease aria-label="Decrease quantity">-</button>
+                      <input 
+                        type="number" 
+                        name="updates[]" 
+                        id="drawer_updates_{{ item.key }}"
+                        value="{{ item.quantity }}" 
+                        min="1"
+                        class="cart-drawer__quantity-input"
+                        data-cart-quantity-input
+                        readonly
+                      >
+                      <button type="button" class="cart-drawer__quantity-btn cart-drawer__quantity-btn--increase" data-quantity-increase aria-label="Increase quantity">+</button>
+                    </div>
                   </div>
                 </div>
                 <a href="/cart/change?line={{ forloop.index }}&quantity=0" class="cart-drawer__item-remove" data-remove-item>
@@ -62,14 +66,10 @@
               <span>Subtotal</span>
               <span data-cart-subtotal>{{ cart.total_price | money }}</span>
             </div>
-            <button type="submit" name="update" class="cart-drawer__update-btn" data-update-btn>
-              Update Cart
-            </button>
-            <button type="submit" name="checkout" class="cart-drawer__checkout-btn" data-checkout-btn>
+            <a href="/checkout" class="cart-drawer__checkout-btn" data-checkout-btn>
               Checkout
-            </button>
+            </a>
           </div>
-        {% endform %}
       {%- else -%}
         <div class="cart-drawer__empty" data-cart-empty>
           <p>Your cart is empty</p>

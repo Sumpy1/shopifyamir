@@ -193,45 +193,132 @@
   }
 
   // ============================================
-  // CART FORMS (UI Feedback Only)
+  // CART DRAWER QUANTITY CONTROLS (Automatic Updates)
   // ============================================
-  // Cart update forms submit natively to /cart
-  // JavaScript only provides loading feedback
-  // Find forms by data attributes, class, or action attribute
-  const cartForm = document.querySelector('[data-cart-form]') || 
-                   document.querySelector('.cart-page__form') ||
-                   document.querySelector('form[action="/cart"]');
-  const cartDrawerForm = document.querySelector('[data-cart-drawer-form]') ||
-                         document.querySelector('.cart-drawer__form');
-
-  function setupCartForm(form) {
-    if (!form) return;
+  // Automatically update cart when quantity changes in cart drawer
+  function updateCartQuantity(line, quantity, key) {
+    const formData = {
+      line: line,
+      quantity: quantity
+    };
     
-    const updateBtn = form.querySelector('[data-update-btn]');
-    const checkoutBtn = form.querySelector('[data-checkout-btn]');
+    const url = (window.Shopify?.routes?.root || '/') + 'cart/change.js';
     
-    // Add loading state on button click, but don't prevent form submission
-    // The form will submit naturally and Shopify will handle checkout redirect
-    if (updateBtn) {
-      updateBtn.addEventListener('click', function() {
-        this.disabled = true;
-        this.textContent = 'Updating...';
-        // Form will submit naturally - don't prevent default
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(formData)
+    })
+      .then(response => response.json())
+      .then(cart => {
+        // Update cart display (count, subtotal)
+        updateCartDisplay(cart);
+        
+        // Update quantity input value
+        const quantityInput = document.querySelector(`[data-cart-item="${key}"] [data-cart-quantity-input]`);
+        if (quantityInput) {
+          quantityInput.value = quantity;
+        }
+        
+        // Update item price if it changed
+        const itemElement = document.querySelector(`[data-cart-item="${key}"]`);
+        if (itemElement && cart.items) {
+          const updatedItem = cart.items.find(item => item.key === key);
+          if (updatedItem) {
+            const priceElement = itemElement.querySelector('.cart-drawer__item-price');
+            if (priceElement) {
+              priceElement.textContent = formatMoney(updatedItem.final_line_price);
+            }
+          }
+        }
+        
+        // If quantity is 0, remove the item from display
+        if (quantity === 0) {
+          const itemElement = document.querySelector(`[data-cart-item="${key}"]`);
+          if (itemElement) {
+            itemElement.remove();
+          }
+          
+          // Check if cart is empty
+          if (cart.item_count === 0) {
+            const cartContent = document.querySelector('[data-cart-content]');
+            if (cartContent) {
+              cartContent.innerHTML = '<div class="cart-drawer__empty" data-cart-empty><p>Your cart is empty</p><a href="/collections/all" class="cart-drawer__continue-shopping">Continue Shopping</a></div>';
+            }
+          }
+        }
+      })
+      .catch(error => {
+        console.error('Error updating cart:', error);
+        // Refresh cart display on error
+        refreshCartDisplay();
       });
-    }
-    
-    if (checkoutBtn) {
-      checkoutBtn.addEventListener('click', function() {
-        this.disabled = true;
-        this.textContent = 'Processing...';
-        // Form will submit naturally and Shopify redirects to /checkout
-        // Don't prevent default - let Shopify handle the redirect
-      });
-    }
   }
 
-  if (cartForm) setupCartForm(cartForm);
-  if (cartDrawerForm) setupCartForm(cartDrawerForm);
+  function initCartDrawerQuantityControls() {
+    const quantityControls = document.querySelectorAll('[data-quantity-controls]');
+    
+    quantityControls.forEach(container => {
+      const decreaseBtn = container.querySelector('[data-quantity-decrease]');
+      const increaseBtn = container.querySelector('[data-quantity-increase]');
+      const quantityInput = container.querySelector('[data-cart-quantity-input]');
+      const line = parseInt(container.getAttribute('data-line'), 10);
+      const key = container.getAttribute('data-key');
+
+      if (decreaseBtn && quantityInput) {
+        // Remove existing listeners by cloning
+        const newDecreaseBtn = decreaseBtn.cloneNode(true);
+        decreaseBtn.parentNode.replaceChild(newDecreaseBtn, decreaseBtn);
+        
+        newDecreaseBtn.addEventListener('click', () => {
+          const current = parseInt(quantityInput.value, 10) || 1;
+          if (current > 1) {
+            const newQuantity = current - 1;
+            quantityInput.value = newQuantity;
+            updateCartQuantity(line, newQuantity, key);
+          }
+        });
+      }
+
+      if (increaseBtn && quantityInput) {
+        // Remove existing listeners by cloning
+        const newIncreaseBtn = increaseBtn.cloneNode(true);
+        increaseBtn.parentNode.replaceChild(newIncreaseBtn, increaseBtn);
+        
+        newIncreaseBtn.addEventListener('click', () => {
+          const current = parseInt(quantityInput.value, 10) || 1;
+          const newQuantity = current + 1;
+          quantityInput.value = newQuantity;
+          updateCartQuantity(line, newQuantity, key);
+        });
+      }
+    });
+  }
+
+  // Initialize cart drawer quantity controls on page load
+  if (document.querySelector('[data-cart-drawer]')) {
+    initCartDrawerQuantityControls();
+  }
+
+  // ============================================
+  // CHECKOUT BUTTON (Direct Link)
+  // ============================================
+  // Checkout buttons are now direct links to /checkout
+  // No form submission needed - Shopify handles checkout
+  const checkoutButtons = document.querySelectorAll('[data-checkout-btn]');
+  checkoutButtons.forEach(btn => {
+    if (btn.tagName === 'A') {
+      // Already a link, no action needed
+      return;
+    }
+    // If it's a button, convert to link behavior
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      window.location.href = '/checkout';
+    });
+  });
 
   // ============================================
   // PRODUCT THUMBNAILS (UI Only)
@@ -271,12 +358,32 @@
   });
 
   // ============================================
-  // SEARCH FUNCTIONALITY (UI Only)
+  // SEARCH FUNCTIONALITY (Predictive Search)
   // ============================================
   const searchForm = document.querySelector('[data-search-form]');
   const searchInput = document.querySelector('[data-search-input]');
-  const searchWrapper = document.querySelector('.header__search-wrapper');
+  const searchWrapper = document.querySelector('[data-search-wrapper]');
+  const searchToggle = document.querySelector('[data-search-toggle]');
+  const predictiveSearchContainer = document.querySelector('[data-predictive-search]');
+  let searchTimeout = null;
 
+  // Toggle search input visibility
+  if (searchToggle && searchWrapper) {
+    searchToggle.addEventListener('click', () => {
+      searchWrapper.classList.toggle('is-expanded');
+      if (searchWrapper.classList.contains('is-expanded')) {
+        searchInput?.focus();
+      } else {
+        searchInput?.blur();
+        if (predictiveSearchContainer) {
+          predictiveSearchContainer.innerHTML = '';
+          predictiveSearchContainer.classList.remove('is-visible');
+        }
+      }
+    });
+  }
+
+  // Handle form submission
   if (searchForm) {
     searchForm.addEventListener('submit', (e) => {
       const query = searchInput ? searchInput.value.trim() : '';
@@ -289,14 +396,90 @@
     });
   }
 
-  if (searchInput && searchWrapper) {
+  // Predictive search functionality
+  function performPredictiveSearch(query) {
+    if (!query || query.length < 2) {
+      if (predictiveSearchContainer) {
+        predictiveSearchContainer.innerHTML = '';
+        predictiveSearchContainer.classList.remove('is-visible');
+      }
+      return;
+    }
+
+    // Find the predictive search section ID
+    const sectionId = 'predictive-search';
+    const url = (window.Shopify?.routes?.root || '/') + `search/suggest?q=${encodeURIComponent(query)}&resources[type]=product,collection,query&resources[limit]=5&section_id=${sectionId}`;
+
+    fetch(url)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.text();
+      })
+      .then(html => {
+        if (!predictiveSearchContainer) return;
+        
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(html, 'text/html');
+        const sectionContent = doc.querySelector(`#shopify-section-${sectionId}`);
+        
+        if (sectionContent) {
+          const results = sectionContent.querySelector('[data-predictive-search-results]');
+          if (results) {
+            predictiveSearchContainer.innerHTML = results.outerHTML;
+            predictiveSearchContainer.classList.add('is-visible');
+          } else {
+            predictiveSearchContainer.innerHTML = '';
+            predictiveSearchContainer.classList.remove('is-visible');
+          }
+        } else {
+          predictiveSearchContainer.innerHTML = '';
+          predictiveSearchContainer.classList.remove('is-visible');
+        }
+      })
+      .catch(error => {
+        console.error('Error performing predictive search:', error);
+        if (predictiveSearchContainer) {
+          predictiveSearchContainer.innerHTML = '';
+          predictiveSearchContainer.classList.remove('is-visible');
+        }
+      });
+  }
+
+  // Debounce function for predictive search
+  function debounce(func, wait) {
+    return function executedFunction(...args) {
+      const later = () => {
+        clearTimeout(searchTimeout);
+        func(...args);
+      };
+      clearTimeout(searchTimeout);
+      searchTimeout = setTimeout(later, wait);
+    };
+  }
+
+  // Handle search input changes
+  if (searchInput) {
+    const debouncedSearch = debounce((e) => {
+      const query = e.target.value.trim();
+      performPredictiveSearch(query);
+    }, 300);
+
+    searchInput.addEventListener('input', debouncedSearch);
+
     searchInput.addEventListener('focus', () => {
-      searchWrapper.classList.add('is-expanded');
+      if (searchInput.value.trim().length >= 2) {
+        performPredictiveSearch(searchInput.value.trim());
+      }
     });
 
-    searchInput.addEventListener('blur', () => {
-      if (!searchInput.value.trim()) {
-        searchWrapper.classList.remove('is-expanded');
+    // Close predictive search when clicking outside
+    document.addEventListener('click', (e) => {
+      if (searchWrapper && !searchWrapper.contains(e.target)) {
+        if (predictiveSearchContainer) {
+          predictiveSearchContainer.classList.remove('is-visible');
+        }
       }
     });
   }

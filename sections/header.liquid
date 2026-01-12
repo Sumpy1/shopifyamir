@@ -50,7 +50,10 @@
     </div>
 
     <div class="header__actions">
-      <div class="header__search-wrapper">
+      <div class="header__search-wrapper" data-search-wrapper>
+        <button type="button" class="header__action-btn header__search-toggle" aria-label="Search" data-search-toggle>
+          {% render 'icon-search' %}
+        </button>
         <form class="header__search-form" action="{{ routes.search_url }}" method="get" data-search-form>
           <input 
             type="search" 
@@ -61,10 +64,11 @@
             aria-label="Search"
             data-search-input
           >
-          <button type="submit" class="header__action-btn header__search-btn" aria-label="Search">
+          <button type="submit" class="header__action-btn header__search-submit" aria-label="Submit search">
             {% render 'icon-search' %}
           </button>
         </form>
+        <div class="header__predictive-search" data-predictive-search></div>
       </div>
       <button type="button" class="header__action-btn" aria-label="Favorites">
         {% render 'icon-heart' %}
