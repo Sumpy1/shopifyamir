@@ -9,7 +9,7 @@
     <h1 class="cart-page__title">Shopping Cart</h1>
 
     {%- if cart.item_count > 0 -%}
-      <form action="/cart" method="post" class="cart-page__form" data-cart-form>
+      {% form 'cart', cart, class: 'cart-page__form', data-cart-form: '' %}
         <div class="cart-page__items">
           {%- for item in cart.items -%}
             <div class="cart-page__item">
@@ -81,7 +81,7 @@
             </button>
           </div>
         </div>
-      </form>
+      {% endform %}
     {%- else -%}
       <div class="cart-page__empty">
         <p>Your cart is empty</p>
@@ -90,9 +90,3 @@
     {%- endif -%}
   </div>
 </div>
-
-{% schema %}
-{
-  "name": "Cart Page"
-}
-{% endschema %}

@@ -81,6 +81,75 @@ a:hover {
   fill: none;
 }
 
+/* Announcement Bar */
+.announcement-bar {
+  position: relative;
+  z-index: 101;
+  padding: 0.75rem var(--spacing-md);
+  text-align: center;
+  font-size: 0.8125rem;
+  font-weight: var(--font-weight-normal);
+  transition: transform var(--transition-base), opacity var(--transition-base);
+}
+
+.announcement-bar.is-hidden {
+  display: none;
+}
+
+.announcement-bar__inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.announcement-bar__content {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.announcement-bar__link {
+  display: block;
+  width: 100%;
+  transition: opacity var(--transition-base);
+}
+
+.announcement-bar__link:hover {
+  opacity: 0.8;
+}
+
+.announcement-bar__text {
+  display: inline-block;
+}
+
+.announcement-bar__close {
+  position: absolute;
+  right: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.8;
+  transition: opacity var(--transition-base);
+  color: inherit;
+}
+
+.announcement-bar__close:hover {
+  opacity: 1;
+}
+
+.announcement-bar__close .icon {
+  width: 16px;
+  height: 16px;
+}
+
 /* Header */
 .header {
   position: sticky;
@@ -90,6 +159,10 @@ a:hover {
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--color-border);
+}
+
+.header.has-announcement {
+  top: 0;
 }
 
 .header__inner {

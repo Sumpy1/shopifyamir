@@ -17,6 +17,25 @@
   'use strict';
 
   // ============================================
+  // ANNOUNCEMENT BAR (UI Only)
+  // ============================================
+  const announcementBar = document.querySelector('[data-announcement-bar]');
+  const announcementClose = document.querySelector('[data-announcement-close]');
+
+  if (announcementClose && announcementBar) {
+    announcementClose.addEventListener('click', () => {
+      announcementBar.classList.add('is-hidden');
+      // Store preference in localStorage
+      localStorage.setItem('announcement-bar-hidden', 'true');
+    });
+  }
+
+  // Check if announcement bar was previously closed
+  if (announcementBar && localStorage.getItem('announcement-bar-hidden') === 'true') {
+    announcementBar.classList.add('is-hidden');
+  }
+
+  // ============================================
   // HEADER & NAVIGATION (UI Only)
   // ============================================
   const header = document.querySelector('[data-header]');
@@ -178,8 +197,12 @@
   // ============================================
   // Cart update forms submit natively to /cart
   // JavaScript only provides loading feedback
-  const cartForm = document.querySelector('[data-cart-form]');
-  const cartDrawerForm = document.querySelector('[data-cart-drawer-form]');
+  // Find forms by data attributes, class, or action attribute
+  const cartForm = document.querySelector('[data-cart-form]') || 
+                   document.querySelector('.cart-page__form') ||
+                   document.querySelector('form[action="/cart"]');
+  const cartDrawerForm = document.querySelector('[data-cart-drawer-form]') ||
+                         document.querySelector('.cart-drawer__form');
 
   function setupCartForm(form) {
     if (!form) return;
@@ -187,24 +210,22 @@
     const updateBtn = form.querySelector('[data-update-btn]');
     const checkoutBtn = form.querySelector('[data-checkout-btn]');
     
-    // Update button - submit to /cart with update action
+    // Add loading state on button click, but don't prevent form submission
+    // The form will submit naturally and Shopify will handle checkout redirect
     if (updateBtn) {
-      updateBtn.addEventListener('click', function(e) {
-        // Form will submit natively
-        // Add loading state
+      updateBtn.addEventListener('click', function() {
         this.disabled = true;
         this.textContent = 'Updating...';
+        // Form will submit naturally - don't prevent default
       });
     }
     
-    // Checkout button - submit to /cart with checkout action
-    // Shopify will redirect to /checkout
     if (checkoutBtn) {
-      checkoutBtn.addEventListener('click', function(e) {
-        // Form will submit natively and Shopify redirects
-        // Add loading state
+      checkoutBtn.addEventListener('click', function() {
         this.disabled = true;
         this.textContent = 'Processing...';
+        // Form will submit naturally and Shopify redirects to /checkout
+        // Don't prevent default - let Shopify handle the redirect
       });
     }
   }

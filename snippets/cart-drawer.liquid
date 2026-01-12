@@ -15,7 +15,7 @@
     </div>
     <div class="cart-drawer__content" data-cart-content>
       {%- if cart.item_count > 0 -%}
-        <form action="/cart" method="post" class="cart-drawer__form" data-cart-drawer-form>
+        {% form 'cart', cart, class: 'cart-drawer__form', data-cart-drawer-form: '' %}
           <div class="cart-drawer__items" data-cart-items>
             {%- for item in cart.items -%}
               <div class="cart-drawer__item" data-cart-item="{{ item.key }}">
@@ -69,7 +69,7 @@
               Checkout
             </button>
           </div>
-        </form>
+        {% endform %}
       {%- else -%}
         <div class="cart-drawer__empty" data-cart-empty>
           <p>Your cart is empty</p>
