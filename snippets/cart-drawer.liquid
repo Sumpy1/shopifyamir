@@ -1,3 +1,9 @@
+{%- comment -%}
+  CART DRAWER - DISPLAY ONLY
+  This drawer displays cart items using Shopify's cart.js endpoint.
+  Cart updates use native forms that submit to Shopify's /cart endpoint.
+  No JavaScript mutations - Shopify controls all cart state.
+{%- endcomment -%}
 <div class="cart-drawer" data-cart-drawer>
   <div class="cart-drawer__overlay" data-cart-overlay></div>
   <div class="cart-drawer__inner">
@@ -8,17 +14,68 @@
       </button>
     </div>
     <div class="cart-drawer__content" data-cart-content>
-      <div class="cart-drawer__empty" data-cart-empty style="display: none;">
-        <p>Your cart is empty</p>
-      </div>
-      <div class="cart-drawer__items" data-cart-items></div>
-    </div>
-    <div class="cart-drawer__footer" data-cart-footer style="display: none;">
-      <div class="cart-drawer__subtotal">
-        <span>Subtotal</span>
-        <span data-cart-subtotal>$0.00</span>
-      </div>
-      <a href="/checkout" class="cart-drawer__checkout">Checkout</a>
+      {%- if cart.item_count > 0 -%}
+        <form action="/cart" method="post" class="cart-drawer__form" data-cart-drawer-form>
+          <div class="cart-drawer__items" data-cart-items>
+            {%- for item in cart.items -%}
+              <div class="cart-drawer__item" data-cart-item="{{ item.key }}">
+                <div class="cart-drawer__item-image">
+                  {%- if item.image -%}
+                    <img 
+                      src="{{ item.image | image_url: width: 80 }}" 
+                      alt="{{ item.product.title | escape }}"
+                      width="80"
+                      height="80"
+                      loading="lazy"
+                    >
+                  {%- else -%}
+                    <div class="cart-drawer__item-placeholder">No Image</div>
+                  {%- endif -%}
+                </div>
+                <div class="cart-drawer__item-info">
+                  <div class="cart-drawer__item-name">{{ item.product.title }}</div>
+                  {%- if item.variant.title != 'Default Title' -%}
+                    <div class="cart-drawer__item-variant">{{ item.variant.title }}</div>
+                  {%- endif -%}
+                  <div class="cart-drawer__item-price">{{ item.final_line_price | money }}</div>
+                  <div class="cart-drawer__item-quantity">
+                    <label for="drawer_updates_{{ item.key }}" class="visually-hidden">Quantity</label>
+                    <input 
+                      type="number" 
+                      name="updates[]" 
+                      id="drawer_updates_{{ item.key }}"
+                      value="{{ item.quantity }}" 
+                      min="0"
+                      class="cart-drawer__quantity-input"
+                      data-cart-quantity-input
+                    >
+                  </div>
+                </div>
+                <a href="/cart/change?line={{ forloop.index }}&quantity=0" class="cart-drawer__item-remove" data-remove-item>
+                  Remove
+                </a>
+              </div>
+            {%- endfor -%}
+          </div>
+          <div class="cart-drawer__footer" data-cart-footer>
+            <div class="cart-drawer__subtotal">
+              <span>Subtotal</span>
+              <span data-cart-subtotal>{{ cart.total_price | money }}</span>
+            </div>
+            <button type="submit" name="update" class="cart-drawer__update-btn" data-update-btn>
+              Update Cart
+            </button>
+            <button type="submit" name="checkout" class="cart-drawer__checkout-btn" data-checkout-btn>
+              Checkout
+            </button>
+          </div>
+        </form>
+      {%- else -%}
+        <div class="cart-drawer__empty" data-cart-empty>
+          <p>Your cart is empty</p>
+          <a href="/collections/all" class="cart-drawer__continue-shopping">Continue Shopping</a>
+        </div>
+      {%- endif -%}
     </div>
   </div>
 </div>

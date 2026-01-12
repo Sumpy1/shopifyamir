@@ -1,0 +1,98 @@
+{%- comment -%}
+  SHOPIFY NATIVE CART PAGE
+  This template uses Shopify's native cart form for updates.
+  All cart mutations are handled by Shopify's backend.
+{%- endcomment -%}
+
+<div class="cart-page">
+  <div class="cart-page__inner">
+    <h1 class="cart-page__title">Shopping Cart</h1>
+
+    {%- if cart.item_count > 0 -%}
+      <form action="/cart" method="post" class="cart-page__form" data-cart-form>
+        <div class="cart-page__items">
+          {%- for item in cart.items -%}
+            <div class="cart-page__item">
+              <div class="cart-page__item-image">
+                {%- if item.image -%}
+                  <img 
+                    src="{{ item.image | image_url: width: 150 }}" 
+                    alt="{{ item.product.title | escape }}"
+                    width="150"
+                    height="150"
+                    loading="lazy"
+                  >
+                {%- else -%}
+                  <div class="cart-page__item-placeholder">No Image</div>
+                {%- endif -%}
+              </div>
+              
+              <div class="cart-page__item-info">
+                <h3 class="cart-page__item-title">
+                  <a href="{{ item.product.url }}">{{ item.product.title }}</a>
+                </h3>
+                {%- if item.variant.title != 'Default Title' -%}
+                  <p class="cart-page__item-variant">{{ item.variant.title }}</p>
+                {%- endif -%}
+                <p class="cart-page__item-price">{{ item.final_line_price | money }}</p>
+              </div>
+
+              <div class="cart-page__item-quantity">
+                <label for="updates_{{ item.key }}" class="visually-hidden">Quantity for {{ item.product.title }}</label>
+                <input 
+                  type="number" 
+                  name="updates[]" 
+                  id="updates_{{ item.key }}"
+                  value="{{ item.quantity }}" 
+                  min="0"
+                  class="cart-page__quantity-input"
+                  data-cart-quantity-input
+                >
+              </div>
+
+              <div class="cart-page__item-total">
+                {{ item.final_line_price | money }}
+              </div>
+
+              <div class="cart-page__item-remove">
+                <a href="/cart/change?line={{ forloop.index }}&quantity=0" class="cart-page__remove-link" data-remove-item>
+                  Remove
+                </a>
+              </div>
+            </div>
+          {%- endfor -%}
+        </div>
+
+        <div class="cart-page__footer">
+          <div class="cart-page__summary">
+            <div class="cart-page__subtotal">
+              <span>Subtotal</span>
+              <span>{{ cart.total_price | money }}</span>
+            </div>
+            <p class="cart-page__note">Taxes and shipping calculated at checkout</p>
+          </div>
+
+          <div class="cart-page__actions">
+            <button type="submit" name="update" class="cart-page__update-btn" data-update-btn>
+              Update Cart
+            </button>
+            <button type="submit" name="checkout" class="cart-page__checkout-btn" data-checkout-btn>
+              Checkout
+            </button>
+          </div>
+        </div>
+      </form>
+    {%- else -%}
+      <div class="cart-page__empty">
+        <p>Your cart is empty</p>
+        <a href="/collections/all" class="cart-page__continue-shopping">Continue Shopping</a>
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Cart Page"
+}
+{% endschema %}

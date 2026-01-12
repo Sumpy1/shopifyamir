@@ -42,18 +42,25 @@
         {{ product.description }}
       </div>
 
-      <form action="{{ routes.cart_add_url }}" method="post" enctype="multipart/form-data" class="product-page__form" data-product-form>
+      {%- comment -%}
+        SHOPIFY NATIVE CART FORM
+        This form submits directly to Shopify's /cart/add endpoint.
+        No JavaScript interception - Shopify handles all cart logic.
+        JavaScript only provides UI feedback (loading states).
+      {%- endcomment -%}
+      <form action="/cart/add" method="post" enctype="multipart/form-data" class="product-page__form" data-product-form>
         {%- unless product.has_only_default_variant -%}
           <div class="product-page__variants">
             {%- for option in product.options_with_values -%}
               <div class="product-page__variant">
                 <label class="product-page__variant-label">{{ option.name }}</label>
-                <select name="id" class="product-page__variant-select" data-variant-select>
+                <select name="id" class="product-page__variant-select" required>
                   {%- for variant in product.variants -%}
                     <option 
                       value="{{ variant.id }}"
                       {% if variant == product.selected_or_first_available_variant %}selected{% endif %}
                       {% unless variant.available %}disabled{% endunless %}
+                      data-price="{{ variant.price }}"
                     >
                       {{ variant.title }} - {{ variant.price | money }}
                     </option>
@@ -63,21 +70,22 @@
             {%- endfor -%}
           </div>
         {%- else -%}
-          <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" data-variant-id>
+          <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
         {%- endunless -%}
 
         <div class="product-page__quantity">
           <label class="product-page__quantity-label">Quantity</label>
           <div class="product-page__quantity-controls">
-            <button type="button" class="product-page__quantity-btn" data-quantity-decrease>-</button>
-            <input type="number" name="quantity" value="1" min="1" class="product-page__quantity-input" data-quantity-input>
-            <button type="button" class="product-page__quantity-btn" data-quantity-increase>+</button>
+            <button type="button" class="product-page__quantity-btn" data-quantity-decrease aria-label="Decrease quantity">-</button>
+            <input type="number" name="quantity" value="1" min="1" class="product-page__quantity-input" data-quantity-input required>
+            <button type="button" class="product-page__quantity-btn" data-quantity-increase aria-label="Increase quantity">+</button>
           </div>
         </div>
 
         <button 
           type="submit" 
           class="product-page__add-to-cart"
+          data-add-to-cart-btn
           {% unless product.selected_or_first_available_variant.available %}disabled{% endunless %}
         >
           {%- if product.selected_or_first_available_variant.available -%}
